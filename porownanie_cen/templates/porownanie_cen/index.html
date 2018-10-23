@@ -1,0 +1,58 @@
+{% extends 'porownanie_cen/base.html' %}
+
+{% block body %}
+{% load static %}
+
+
+    <div class="container">
+        <div class="col-12 col-md-6 mx-auto">
+            {% if user.is_authenticated %}
+<h3 class="text-center ml-0 ml-md-5"> WITAJ {{user}}! WYBIERZ BRAND:</h3>
+                {% endif %}
+
+
+
+
+        <ul class="list-group ml-0 ml-md-5 ">
+        {% for brand in object_list %} <!--# all_brands-->
+          <li class="list-group-item d-flex  align-items-center py-1 bg-secondary">
+              <a class="text-light text-center mx-auto btn" href="{% url 'porownanie_cen:detail' brand.id %}">
+                 <span class="">{{brand.nazwa}}</span>
+              </a>
+              {% if brand.logo %}
+            <img class="img-thumbnail ml-1" src="{{ brand.logo.url }}" width="50" height="50">
+              {% else %}
+              <img class="img-thumbnail ml-1" src="{% static 'porownanie_cen/' %}img/RECE.png" width="50" height="50">
+              {% endif %}
+              <!--<form action="{% url 'porownanie_cen:brand-update' brand.id %}" method="get" >-->
+                <!--{% csrf_token %}-->
+                <!--<input type="hidden" name="brand_id" value="{{brand.id}}"/>-->
+                <!--<button type="submit" class="btn btn-light p-1   ml-2">-->
+                  <!--<i class="fas fa-edit text-primary"></i>-->
+                <!--</button>-->
+            <!--</form>-->
+              <a href="{% url 'porownanie_cen:brand-update' brand.id%}">
+                  <button class="btn btn-light p-1   ml-2">
+                      <i class="fas fa-edit text-primary"></i>
+                  </button>
+              </a>
+
+            <form action="{% url 'porownanie_cen:brand-delete' brand.id %}" method="post" >
+                {% csrf_token %}
+                <input type="hidden" name="brand_id" value="{{brand.id}}"/>
+                <button type="submit" class=" btn-sm ml-2" onclick="return confirm('Usunąć {{brand.nazwa}} i wszystkie pozycje cennika?')" >
+                  <i class="fas fa-trash-alt text-danger "></i>
+                </button>
+            </form>
+          </li>
+
+
+        {% endfor %}
+        </ul>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

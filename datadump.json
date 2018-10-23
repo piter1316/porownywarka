@@ -1,0 +1,315 @@
+[
+{
+    "model": "porownanie_cen.brand",
+    "pk": 1,
+    "fields": {
+        "name": "ABB",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/ABB_logo.svg/1200px-ABB_logo.svg.png"
+    }
+},
+{
+    "model": "porownanie_cen.brand",
+    "pk": 2,
+    "fields": {
+        "name": "ALLEN-BRADLEY",
+        "logo": "https://upload.wikimedia.org/wikipedia/en/b/b0/Allen-Bradley_Logo.gif"
+    }
+},
+{
+    "model": "porownanie_cen.brand",
+    "pk": 3,
+    "fields": {
+        "name": "OMRON",
+        "logo": "https://www.google.pl/imgres?imgurl=https%3A%2F%2Fbotw-pd.s3.amazonaws.com%2Fstyles%2Flogo-thumbnail%2Fs3%2F0002%2F8355%2Fbrand.gif%3Fitok%3DJsAt3GWX&imgrefurl=http%3A%2F%2Fwww.brandsoftheworld.com%2Flogo%2Fomron&docid=AnMUk8T97nk9ZM&tbnid=08uCRMWNuggvCM%3A&vet=10ahUKEwjguNOjyY3eAhVClSwKHTSABzcQMwgyKAEwAQ..i&w=200&h=200&bih=913&biw=1280&q=omron%20logo&ved=0ahUKEwjguNOjyY3eAhVClSwKHTSABzcQMwgyKAEwAQ&iact=mrc&uact=8"
+    }
+},
+{
+    "model": "porownanie_cen.brand",
+    "pk": 4,
+    "fields": {
+        "name": "PHOENIX CONTACT",
+        "logo": "https://www.google.pl/imgres?imgurl=https%3A%2F%2Fbotw-pd.s3.amazonaws.com%2Fstyles%2Flogo-thumbnail%2Fs3%2F0007%2F0832%2Fbrand.gif%3Fitok%3DfsF6hWBL&imgrefurl=http%3A%2F%2Fwww.brandsoftheworld.com%2Flogo%2Fphoenix-contact-0&docid=PDO6N4Y14_viyM&tbnid=mgw4IYmRmjywgM%3A&vet=10ahUKEwjfs4W5yY3eAhULkywKHfvhDRMQMwg6KAMwAw..i&w=200&h=200&bih=913&biw=1280&q=phoenics%20contact%20logo&ved=0ahUKEwjfs4W5yY3eAhULkywKHfvhDRMQMwg6KAMwAw&iact=mrc&uact=8"
+    }
+},
+{
+    "model": "porownanie_cen.brand",
+    "pk": 5,
+    "fields": {
+        "name": "PILZ",
+        "logo": "https://www.google.pl/imgres?imgurl=https%3A%2F%2Fwww.cmse.com%2Fstatic%2Fcmse%2Fres%2Fimg%2Flogo-pilz.png&imgrefurl=https%3A%2F%2Fwww.cmse.com%2Fpl-INT&docid=KBRgtP8AzPt6WM&tbnid=LEhFLc_OTq_pBM%3A&vet=10ahUKEwjzi97DyY3eAhXM2ywKHQB8B_gQMwg6KAcwBw..i&w=130&h=95&bih=913&biw=1280&q=pilz%20logo&ved=0ahUKEwjzi97DyY3eAhXM2ywKHQB8B_gQMwg6KAcwBw&iact=mrc&uact=8"
+    }
+},
+{
+    "model": "porownanie_cen.brand",
+    "pk": 6,
+    "fields": {
+        "name": "SCHNEIDER",
+        "logo": "https://www.google.pl/imgres?imgurl=https%3A%2F%2Fbotw-pd.s3.amazonaws.com%2Fstyles%2Flogo-thumbnail%2Fs3%2F0020%2F3691%2Fbrand.gif%3Fitok%3D5dUzS5n7&imgrefurl=http%3A%2F%2Fwww.brandsoftheworld.com%2Flogo%2Fschneider-electric-0&docid=xi99pOAgQmsYwM&tbnid=OhgGxXcuBBVO5M%3A&vet=10ahUKEwiH2LDRyY3eAhVGWywKHceODvkQMwg1KAEwAQ..i&w=195&h=195&bih=913&biw=1280&q=SCneider%20logo&ved=0ahUKEwiH2LDRyY3eAhVGWywKHceODvkQMwg1KAEwAQ&iact=mrc&uact=8"
+    }
+},
+{
+    "model": "porownanie_cen.brand",
+    "pk": 7,
+    "fields": {
+        "name": "SICK",
+        "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAzFBMVEX8/vxMpsxMosxUqtREosxUpsxEnswEAgT0+vzs9vw8nsz8+vx0utxkstQ8msw0msx8vtz09vz8hmy02uyczuQMDgzE4vQUFhS82uycmpx8utxcXlzM5vTk4uS83uz08vQ0NjQcGhxcqtS8urzk5uTc7vTExsSMxuTU0tQUEhQcHhykoqRERkRsbmyk0uR0cnQsKiyMiozU1tSsrqz8elxUUlT82tRkYmTs5uQ8Pjx8fnz8qpT8jnTMxsT82szk8vTM5uz84tz8loT8tqSCrkQSAAAQY0lEQVR4nO1bCX/iOJa3ZGEbGxtYjuBwBghOgHCEZgJsZzKz+/2/076nywekyunprsz8Vn9cwWBb0rsPUZZlYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBg8N3wmtVqs/otM1f51NnDu7ope/3TVXqDXpI0OJJk0715X/DjgYL8Ukoz5LEFM9+LV40f4ixJRrkxmu17dREuf0JFuxGGzAH4eJCwlrSuFzLgY/Cx7muD4tWPhloEX02t1SxDhTdKQpvBnPzF+CHO4N+0tsmsolqLfH1nfXw9VrPVCKnPGKVEgDIYhty3Hws3togvCPWZXx8FhRW1fd9hYho46qR3rRvXGDSmMDEjYmrKX/qMMoc0UoZVa766TJz69ejdBnBE30EqYiAcJNzkpdKzHUkpYdGouCQ7MwhhTruEanmtULKvQmhFTV+hchHIUhrqiao1R94A40dFiXwkocMov0G84LD5O4xi3+cUqEWonqsokWrD1ysCgvz7ojhvoLlB4nE0OXGlohaqV0NZqNaAhKirtCiRwT1BMsR1m8KBLzzDQagTbjLr7dlMzUWjUW6koCWGESuibFoU2A1U2wRZDFRkJ4ZPhC9FfAuUNKopIZ"
+    }
+},
+{
+    "model": "porownanie_cen.brand",
+    "pk": 8,
+    "fields": {
+        "name": "WAGO",
+        "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAtFBMVEX///+Crk53qDoAAAD4+vZ+rEaArUt+rEh9q0SoxYrB1ax6qkCOtWK70aTa5s52pzehwYDq8eO+vr7Q38Lq6urMzMzw8PDz9+93d3eRkZHi4uLFxcVbW1tmZmaCgoLKysqqqqqzzJlubm60tLSioqLF2LLX19d+fn6HsVajwoKUuWs6OjpFRUUkJCSZmZnW48kXFxdUVFQwMDBwpCtgYGATExNCQkIfHx/i69mTuGpqoBpjnQAhaUaDAAAHiklEQVR4nO2aiVbiShCGi3QCgQjBCIRFkEUWAXVcZsa59/3f61Z3EOnugHglyHj+7xw8sdf6e6leEiIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ8H9VxuQMSU/LH+1DRniDhw/l3PGX21HVsTF0MtJwovj1juoVo9R43l1pU9KPOZcvJjH/Ocs62pe5k4h90ZYybrCNedVuqkW43ieaS33Z04+pxG+ZFrhBjcu/eOW51Q+z66Oi1lg6GOcDCvU4L57Gs/L9JKZfysFoaXP8z0/PJJEqbDkUWYK43K5VDYF+uVSqVQ+0rJYjOlfmg9okGWLzvRODI66WLCLqZBbYYeTHSVfE5jP1qtZvPx5ceNSlpXGoeFG4wwrS2VcHGS6OlULmkD/L9iWzn1vjb/eK8SzjWAvWA/7iqOP0ZwMLOa9NIJEffmskBq9yVNS+ria251u9j8a1NVGXfgafKZ3lfMantPdjCPHSykw3etqFSmqklKWT4uk3rOg8E7afPDx/ZqrdcqrkrFhdLAKL+tupiD7Nta7dSNWKrzfIl/HSas0leDDC2GqQtesa6XQdDOOdDPGzDQUlr0tsbbCrQVt8nHfnaqwaJq1UjjXbQhKZM3MTyg822M4c6mHUHgemsUmCu8NNzOTgb"
+    }
+},
+{
+    "model": "porownanie_cen.brand",
+    "pk": 9,
+    "fields": {
+        "name": "WEIDMULLER",
+        "logo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw4QDxMPEhAVEhAQEBAREREPExURDxIQFhYXFhUVExMYKCggGhslHBUVITEhJS4rLi4uFx8zODMsNygtLisBCgoKDg0OGxAQGzUjICUvLS8vLS0rLTUtLy8tLi0vLS0tLTAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBEQACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAAAQMGBQQHAv/EADYQAAIBAgMECQIFBAMAAAAAAAABAgMRBAUSFCExkQYTM0FRUmFysSJxIzKBocEHQmLRU+Hw/8QAGgEBAAIDAQAAAAAAAAAAAAAAAAEEAgMFBv/EAC4RAQACAgEDAwIEBwEBAAAAAAABAgMEEQUSIRMxQVFhFCIjgTJCcZGhscFyM//aAAwDAQACEQMRAD8A+0YehBwi3GLvFXdl4AWbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAbPT8keSAjqIeSPJAcO/25IDu4b8kfbH4AtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQwM7cDvYXs4+2PwBaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhgZwDv4Xs4+2PwBaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhgZwDv4Xs4+2PwBaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhgZwDv4Xs4+2PwBaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhgZwDv4Xs4+2PwBaAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$120000$ZxbHbAOf9i9n$aCSObIQXegc8FKBDfx1VNHq8kA8+v3GQQKSzj/etiww=",
+        "last_login": "2018-10-17T12:29:40.834Z",
+        "is_superuser": true,
+        "username": "piter",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2018-10-17T12:29:29.375Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ffqbsmnen24l2vlnnd14lgpild1ve0rk",
+    "fields": {
+        "session_data": "MjM0ZDJiZmM1MGE4ZDliYzExMzAxY2Y2YzUwMGVmZDNjOTk1YmE1Njp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlNjZmYTQxNTU1NDBmZTY1ZTk3NTg1OTk3ODBkNTk1M2Q2YTE5OGJmIn0=",
+        "expire_date": "2018-10-31T12:29:40.843Z"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2018-10-17T12:29:47.181Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "brand"
+        ],
+        "object_id": "2",
+        "object_repr": "Brand object (2)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2018-10-17T12:33:18.582Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "brand"
+        ],
+        "object_id": "1",
+        "object_repr": "ABB",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2018-10-17T12:33:28.615Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "brand"
+        ],
+        "object_id": "2",
+        "object_repr": "ALLEN-BRADLEY",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2018-10-17T12:34:39.897Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "produkt"
+        ],
+        "object_id": "123",
+        "object_repr": "1234",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2018-10-17T12:35:30.856Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "produkt"
+        ],
+        "object_id": "aaa",
+        "object_repr": "aaa",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2018-10-17T13:23:52.576Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "brand"
+        ],
+        "object_id": "3",
+        "object_repr": "OMRON",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2018-10-17T13:24:39.694Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "brand"
+        ],
+        "object_id": "4",
+        "object_repr": "PHOENIX CONTACT",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2018-10-17T13:25:04.316Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "brand"
+        ],
+        "object_id": "5",
+        "object_repr": "PILZ",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2018-10-17T13:25:34.141Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "brand"
+        ],
+        "object_id": "6",
+        "object_repr": "SCHNEIDER",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2018-10-17T13:26:23.403Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "brand"
+        ],
+        "object_id": "7",
+        "object_repr": "SICK",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2018-10-17T13:26:55.794Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "brand"
+        ],
+        "object_id": "8",
+        "object_repr": "WAGO",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2018-10-17T13:27:24.110Z",
+        "user": [
+            "piter"
+        ],
+        "content_type": [
+            "porownanie_cen",
+            "brand"
+        ],
+        "object_id": "9",
+        "object_repr": "WEIDMULLER",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}
+]

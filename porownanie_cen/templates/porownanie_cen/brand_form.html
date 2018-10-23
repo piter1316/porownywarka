@@ -1,0 +1,25 @@
+{% extends 'porownanie_cen/base.html' %}
+
+
+
+{% block body %}
+
+<div class="container bg-light w-50">
+    <h2 class="text-center">EDYTUJ BRAND</h2>
+
+     <form class="form p-3" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form">
+          <div class="row ">
+              <div class="col-12 ">{{ form.nazwa}}</div>
+              <div class="col-12 ">{{ form.logo}}</div>
+               <div class="col-12 mt-2">
+                <button type="submit" class="btn btn-info" value="Create">ZAPISZ</button>
+            </div>
+          </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

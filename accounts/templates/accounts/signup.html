@@ -1,0 +1,21 @@
+{% extends 'porownanie_cen/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <h1>DODAJ </h1>
+
+
+        <div class="container">
+            <form class="site-form" action="/accounts/signup/" method="post">
+                {% csrf_token %}
+                {{form}}
+                <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        {% endblock %}

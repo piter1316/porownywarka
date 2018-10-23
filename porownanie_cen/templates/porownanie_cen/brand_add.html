@@ -1,0 +1,27 @@
+{% extends 'porownanie_cen/base.html' %}
+
+
+
+{% block body %}
+
+
+<div class="container bg-light w-50">
+    <h2 class="text-center">DODAJ BRAND</h2>
+
+    <form class="form p-3" action="{% url 'porownanie_cen:brand-add' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form">
+          <div class="row d-flex">
+              <div class="col-5 my-auto">{{ form.nazwa}}</div>
+              <div class="col-5 ">Logo: {{ form.logo}}</div>
+               <div class="col-2 my-auto">
+                <button type="submit" class="btn btn-info" value="Create">ZAPISZ</button>
+            </div>
+          </div>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}
