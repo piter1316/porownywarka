@@ -8,6 +8,7 @@ from porownanie_cen.views import IndexView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^porownanie_cen/', include('porownanie_cen.urls')),
+    url(r'^wszystkie_ceny/', include('wszystkie_ceny.urls')),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^$', IndexView.as_view(), name="home"),
 

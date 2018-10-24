@@ -28,6 +28,7 @@ class DetailView(generic.DetailView):
 class BrandUpdate(UpdateView):
     model = Brand
     form_class = UpdateBrand
+
     success_url = reverse_lazy('porownanie_cen:index')
 
 
@@ -39,8 +40,8 @@ class BrandDelete(DeleteView):
     model = Brand
     success_url = reverse_lazy('porownanie_cen:index')
     # usuwanie bez potwierdzającego template
-    # def get(self, request, *args, **kwargs):
-    #     return self.post(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 
 

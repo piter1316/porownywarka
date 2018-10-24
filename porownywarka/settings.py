@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'porownanie_cen',
     'accounts',
+    'wszystkie_ceny',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
