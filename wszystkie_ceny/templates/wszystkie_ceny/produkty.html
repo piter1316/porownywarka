@@ -5,7 +5,7 @@
   <h3 class="text-center">WSZYSTKIE PRODUKTY</h3>
   <div class="d-block mx-auto mb-3">
     <form class="form-inline mx-auto" method="get" action="" style="max-width:300px;">
-      <input class="form-control mr-1" type="text" name="q" placeholder="Szukaj" value="{{ request.GET.q}}" />
+      <input class="form-control mr-1" type="text" name="q" placeholder="Kod Towaru" value="{{ request.GET.q}}" />
       <input class="btn btn-info" type="submit" value="szukaj" />
     </form>
   </div>
@@ -21,7 +21,19 @@
     </tr>
   </thead>
   <tbody>
+    {% if result is not None %}
+    {% for product in result %}
+    <tr>
+      <td>{{product.kodtowaru}}</td>
+      <td>{{product.kontrahentkod}}</td>
+      <td>{{product.cenakatalogowa_eur}}</td>
+      <td>{{product.cenakoncowa_eur}}</td>
+      <td>{{product.dataimportu}}</td>
+    </tr>
+    {% endfor %}
+    {% else %}
     {% for product in products %}
+
     <tr>
 
       <td>{{product.kodtowaru}}</td>
@@ -30,7 +42,11 @@
       <td>{{product.cenakoncowa_eur}}</td>
       <td>{{product.dataimportu}}</td>
     </tr>
+
+
     {% endfor %}
+
+  {% endif %}
 
   </tbody>
 </table>
