@@ -30,12 +30,36 @@
       <td>{{product.cenakoncowa_eur}}</td>
       <td>{{product.dataimportu}}</td>
     </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5"class="alert alert-danger"><p class="lead text-center"> BRAK KODU: <span class="font-weight-bold">{{ query }}</span> W BAZIE</p></td>
+      </tr>
+      {% if not_found_tip %}
+      <tr class="bg-info">
+        <td colspan="5">
+          <h3 class="text-light text-center">Podobne kody:</h3>
+        </td>
+      </tr>
+      {% for product in not_found_tip %}
+      <tr>
+        <td>{{product.kodtowaru}}</td>
+        <td>{{product.kontrahentkod}}</td>
+        <td>{{product.cenakatalogowa_eur}}</td>
+        <td>{{product.cenakoncowa_eur}}</td>
+        <td>{{product.dataimportu}}</td>
+      </tr>
+
+      {% endfor %}
+      {% endif %}
+
+
+
+
     {% endfor %}
     {% else %}
+
     {% for product in products %}
-
     <tr>
-
       <td>{{product.kodtowaru}}</td>
       <td>{{product.kontrahentkod}}</td>
       <td>{{product.cenakatalogowa_eur}}</td>
@@ -50,6 +74,8 @@
 
   </tbody>
 </table>
+
+
     <div class="pagination">
     <span class="step-links">
         {% if products.has_previous %}

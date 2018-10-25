@@ -11,7 +11,7 @@ urlpatterns = [
 
 
     #porownanie_cen/1/
-    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
+    url(r'^(?P<pk>[0-9]+)/$', views.brand_details, name='detail'),
 
     # powownanie_cen/brand/add/
     url(r'brand/add/$', views.brand_create, name='brand-add'),

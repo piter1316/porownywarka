@@ -2,37 +2,46 @@
 
 {% block body %}
 {% load static %}
-<div class="mt-5">
-  <div class="row mx-2">
-    <div class="col-12 col-lg-3">
-      {% if brand.logo %}
-      <img class=" d-block mx-auto" src="{{ brand.logo.url }}" width="250">
-      {% else %}
-      <img class=" d-block mx-auto" src="{% static 'porownanie_cen/' %}img/RECE.png" width="250">
-      {% endif %}
-      <h1 class="text-center">{{ brand.nazwa}}</h1>
+<div class="mt-1">
+  <div class="container-fluid">
+      {% for item in brand %}
+        <h1 class="text-center">{{ item.nazwa}}</h1>
+        {% endfor %}
     </div>
-    <div class="col-12 col-lg-9">
+  </div>
+  <div class="row mx-2">
+    <div class="col-12 col-lg-2">
+      <form class="form mx-auto" method="get" action="" style="max-width:300px;">
+        <input class="btn btn-info btn-block" type="submit" value="szukaj" />
+        <textarea class="form-control mr-1" rows="12" type="text" name="q"  placeholder="Wyszukaj wiele" value="{{ request.GET.q}}" ></textarea>
+    </form>
+    </div>
+    <div class="col-12 col-lg-10 p-0">
+
       <table class="table table-striped table-dark">
         <thead class="bg-secondary">
           <tr>
             <th scope="col" class="text-center">KOD</th>
-            <th scope="col" class="text-center">KONTRAHENT</th>
-            <th scope="col" class="text-center">CENA KATALOGOWA EUR</th>
-            <th scope="col" class="text-center">CENA KONCOWA EUR</th>
-            <th scope="col" class="text-center">Z DNIA</th>
+            <th scope="col" class="text-center">CENA</th>
+            {% for kontrahent in kontrahenci %}
+            <th scope="col" class="text-center p-0">{{kontrahent.kontrahentkod}}</th>
+            {% endfor %}
           </tr>
         </thead>
         <tbody>
-        {% for product in brand.produkt_set.all %}
           <tr>
-            <th scope="row" class="text-center">{{product.kodtowaru }}</th>
-            <td class="text-center">{{product.kontrahentkod}}</td>
-            <td class="text-center">{{product.cenakatalogowa_eur}}</td>
-            <td class="text-center">{{product.cenakoncowa_eur}}</td>
-            <td class="text-center">{{product.dataimportu}}</td>
+            <th class="text-center">
+              kod
+            </th>
+            <th class="text-center">
+              najniższa cena
+            </th>
+            {% for kontrahent in kontrahenci %}
+            <th class="text-center">
+              {{kontrahent.cenakoncowa_eur}}
+            </th>
+            {% endfor %}
           </tr>
-        {% endfor%}
         </tbody>
       </table>
     </div>
