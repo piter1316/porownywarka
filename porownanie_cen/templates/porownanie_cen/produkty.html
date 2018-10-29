@@ -34,30 +34,20 @@
       <table class="table table-sm table-dark">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+
+      <th class="bg-secondary text-center border text-light" scope="col">KOD</th>
+
+      <th class="bg-secondary text-center border text-light" scope="col">CENA</th>
     </tr>
   </thead>
   <tbody>
+      {% for code in code_price %}
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td class="bg-dark text-center border text-light">{{code.0.kodtowaru}}</td>
+
+      <td class="bg-dark text-center border text-light">{{code.0.cenakoncowa_eur__min}}</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 
@@ -65,9 +55,9 @@
     <div class="col-12 col-lg-8">
       <table class="table table-sm table-dark">
         <thead>
-          <tr class="bg-secondary">
+          <tr class="bg-secondary ">
             {% for kontrahent in kontrahenci %}
-            <th class="text-center">{{ kontrahent.kontrahentkod }}</th>
+            <th class="text-center border text-light">{{ kontrahent.kontrahentkod }}</th>
           {% endfor %}
           </tr>
         </thead>
@@ -93,4 +83,7 @@
     </div>
   </div>
 </div>
+
+
+{{code_price}}
 {% endblock %}

@@ -60,6 +60,7 @@ def brand_details(request,pk):
     base_view = Produkt.objects.raw("select * from produkty where brand_id ={} limit 10".format(pk))
     brand = Brand.objects.raw("select id,nazwa from brandy where id={}".format(pk))
     final_result = []
+    code_price = []
 
     # kontrahenci = Produkt.objects.raw("Select kodTowaru, kontrahentKod, cenaKoncowa_EUR from produkty where kodtowaru ='{}' and brand_id = {} ".format(query,pk))
     kontrahenci = Produkt.objects.values('kontrahentkod').distinct().filter(brand_id = pk)
@@ -69,14 +70,20 @@ def brand_details(request,pk):
         codes_to_query = query.splitlines()
         for code in codes_to_query:
             codes_list.append(Produkt.objects.raw(
-                "select kontrahentKod, kodTowaru, cenaKoncowa_EUR "
+                "select kontrahentKod, kodTowaru, min(cenaKoncowa_EUR) "
                 "from produkty "
                 "where brand_id ={} and kodTowaru ='{}' ".format(pk,code)))
             codes.append(code)
+            code_price.append(Produkt.objects.values('kodtowaru').filter(kodtowaru=code).annotate(Min('cenakoncowa_eur')))
+
             for kontrahent in kontrahenci:
                 by_price.append(Produkt.objects.values('kodtowaru','cenakoncowa_eur','kontrahentkod').filter(kontrahentkod=kontrahent['kontrahentkod'],kodtowaru=code))
     for result in by_price:
         final_result.append(result.values('kontrahentkod','cenakoncowa_eur').order_by('cenakoncowa_eur'))
+
+
+
+
 
 
 
@@ -88,9 +95,10 @@ def brand_details(request,pk):
         'query': query,
         'codes_list': codes_list,
         'codes_to_query':codes_to_query,
-        'codes':codes,
+        'codes': codes,
         'by_price': by_price,
         'final_result': final_result,
         'kontrahenci_length': kontrahenci_length,
+        'code_price': code_price,
         }
     return render(request, 'porownanie_cen/produkty.html', context)
