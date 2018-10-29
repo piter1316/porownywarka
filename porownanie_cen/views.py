@@ -1,3 +1,4 @@
+from django.db.models import Min
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django import forms as F
@@ -50,15 +51,46 @@ def brand_create(request):
 
 def brand_details(request,pk):
     query = request.GET.get('q')
+    codes_to_query=None
+    codes_list= []
+    kodtowaru = []
+    codes=[]
+    by_price=[]
     all_products = Produkt.objects.raw("select * from produkty where brand_id ={} and kodtowaru ='{}' ".format(pk,query))
     base_view = Produkt.objects.raw("select * from produkty where brand_id ={} limit 10".format(pk))
     brand = Brand.objects.raw("select id,nazwa from brandy where id={}".format(pk))
-    kontrahenci = Produkt.objects.raw("Select kodTowaru, kontrahentKod, cenaKoncowa_EUR from produkty where kodtowaru ='{}' and brand_id = {} ".format(query,pk))
+    final_result = []
+
+    # kontrahenci = Produkt.objects.raw("Select kodTowaru, kontrahentKod, cenaKoncowa_EUR from produkty where kodtowaru ='{}' and brand_id = {} ".format(query,pk))
+    kontrahenci = Produkt.objects.values('kontrahentkod').distinct().filter(brand_id = pk)
+    kontrahenci_length = len(kontrahenci)
+    if query:
+
+        codes_to_query = query.splitlines()
+        for code in codes_to_query:
+            codes_list.append(Produkt.objects.raw(
+                "select kontrahentKod, kodTowaru, cenaKoncowa_EUR "
+                "from produkty "
+                "where brand_id ={} and kodTowaru ='{}' ".format(pk,code)))
+            codes.append(code)
+            for kontrahent in kontrahenci:
+                by_price.append(Produkt.objects.values('kodtowaru','cenakoncowa_eur','kontrahentkod').filter(kontrahentkod=kontrahent['kontrahentkod'],kodtowaru=code))
+    for result in by_price:
+        final_result.append(result.values('kontrahentkod','cenakoncowa_eur').order_by('cenakoncowa_eur'))
+
+
+
     context = {
         'products': all_products,
         'base_view': base_view,
         'brand': brand,
         'kontrahenci':kontrahenci,
         'query': query,
-    }
+        'codes_list': codes_list,
+        'codes_to_query':codes_to_query,
+        'codes':codes,
+        'by_price': by_price,
+        'final_result': final_result,
+        'kontrahenci_length': kontrahenci_length,
+        }
     return render(request, 'porownanie_cen/produkty.html', context)

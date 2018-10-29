@@ -11,7 +11,7 @@ def wszystkie_ceny_view(request):
     if query:
         query = query.replace("'", "")
         query = query.replace('"', '')
-        not_found_tip = Produkt.objects.raw("SELECT * FROM produkty WHERE kodtowaru LIKE %s LIMIT 10", ("%" + query + "%",))
+        not_found_tip = Produkt.objects.raw("SELECT * FROM produkty WHERE kodtowaru LIKE %s LIMIT 10", (query + "%",))
         result = Produkt.objects.raw("SELECT * from produkty where kodtowaru = '{}' order by cenakoncowa_eur".format(query))
 
 
