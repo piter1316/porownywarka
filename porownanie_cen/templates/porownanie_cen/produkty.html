@@ -26,38 +26,50 @@
     <div class="col-12 col-lg-2">
       <form class="form mx-auto" method="get" action="" style="max-width:300px;">
         <input class="btn btn-info btn-block" type="submit" value="szukaj" />
-        <textarea class="form-control mr-1" rows="12" type="text" name="q"  placeholder="Wyszukaj wiele">{{ request.GET.q}}</textarea>
+        <textarea class="form-control mr-1" rows="22" type="text" name="q"  placeholder="Wyszukaj wiele">{{ request.GET.q}}</textarea>
     </form>
 
     </div>
-    <div class="col-12 col-lg-2">
+    <div class="col-12 col-lg-2 p-0">
       <table class="table table-sm table-dark">
-  <thead>
-    <tr>
+        <thead>
+          <tr>
+            {% if brand_id == "6" %}
+            <th class="bg-secondary text-center border text-light" scope="col">KOD</th>
+            {% else %}
+            <th class="bg-secondary text-center border text-light" scope="col">KOD</th>
+            {% endif %}
 
-      <th class="bg-secondary text-center border text-light" scope="col">KOD</th>
-
-      <th class="bg-secondary text-center border text-light" scope="col">CENA</th>
-    </tr>
-  </thead>
-  <tbody>
-      {% for code in code_price %}
-    <tr>
-      <td class="bg-dark text-center border text-light">{{code.0.kodtowaru}}</td>
-
-      <td class="bg-dark text-center border text-light">{{code.0.cenakoncowa_eur__min}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
+            <th class="bg-secondary text-center border text-light" scope="col">CENA</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for code in code_price %}
+          <tr>
+            {% if code %}
+            <td class="bg-dark text-center border text-light">{{code.0.kodtowaru}}</td>
+            {% else %}
+            <td class="bg-warning text-center border text-light">brak</td>
+            {% endif %}
+            <td class="bg-dark text-center border text-light">{{code.0.cenakoncowa_eur__min}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-    <div class="col-12 col-lg-8">
+
+    <div class="col-12 col-lg-8 p-0">
       <table class="table table-sm table-dark">
         <thead>
           <tr class="bg-secondary ">
             {% for kontrahent in kontrahenci %}
+            {% with x=kontrahenci_length %}
+            {% if x > 5 %}
+            <th class="text-center border text-light"><small>{{ kontrahent.kontrahentkod }}</small></th>
+            {% else %}
             <th class="text-center border text-light">{{ kontrahent.kontrahentkod }}</th>
+            {% endif %}
+            {% endwith %}
           {% endfor %}
           </tr>
         </thead>
@@ -65,7 +77,10 @@
           <tr >
             {% for item in final_result %}
               {% if  item.0.cenakoncowa_eur %}
-                <td class="text-center bg-dark border text-light">{{ item.0.cenakoncowa_eur }}</td>
+                {% if item.0.cenakoncowa_eur == prices.0.cenakoncowa_eur %}
+                <td class="text-center bg-dark border text-danger">{{ item.0.cenakoncowa_eur }}{{forloop.counter}}</td>
+                {% endif %}
+                <td class="text-center bg-dark border text-light">{{ item.0.cenakoncowa_eur }}{{forloop.counter}}</td>
               {% else %}
                 <td class="text-center bg-dark border text-warning">N/A</td>
               {% endif %}
@@ -83,7 +98,6 @@
     </div>
   </div>
 </div>
+</div>
 
-
-{{code_price}}
 {% endblock %}

@@ -12,7 +12,7 @@
 
   <table class="table table-sm table-info">
   <thead class="bg-secondary">
-    <tr>
+    <tr class="text-center">
       <th scope="col">Kod</th>
       <th scope="col">Kontrahent</th>
       <th scope="col">Cena Katalogowa EUR</th>
@@ -23,28 +23,37 @@
   <tbody>
     {% if result is not None %}
     {% for product in result %}
-    <tr>
+    <tr class="text-center">
       <td>{{product.kodtowaru}}</td>
       <td>{{product.kontrahentkod}}</td>
+      {% if product.cenakatalogowa_eur is None %}
+      <td>----</td>
+      {% else %}
       <td>{{product.cenakatalogowa_eur}}</td>
+      {% endif %}
+
       <td>{{product.cenakoncowa_eur}}</td>
       <td>{{product.dataimportu}}</td>
     </tr>
       {% empty %}
-      <tr>
+      <tr class="text-center">
         <td colspan="5"class="alert alert-danger"><p class="lead text-center"> BRAK KODU: <span class="font-weight-bold">{{ query }}</span> W BAZIE</p></td>
       </tr>
       {% if not_found_tip %}
-      <tr class="bg-info">
+      <tr class="bg-info text-center">
         <td colspan="5">
           <h3 class="text-light text-center">Podobne kody:</h3>
         </td>
       </tr>
       {% for product in not_found_tip %}
-      <tr>
+      <tr class="text-center">
         <td>{{product.kodtowaru}}</td>
         <td>{{product.kontrahentkod}}</td>
+        {% if product.cenakatalogowa_eur is None %}
+        <td>----</td>
+        {% else %}
         <td>{{product.cenakatalogowa_eur}}</td>
+        {% endif %}
         <td>{{product.cenakoncowa_eur}}</td>
         <td>{{product.dataimportu}}</td>
       </tr>
