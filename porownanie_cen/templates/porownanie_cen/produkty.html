@@ -21,17 +21,58 @@
       </div>
   </div>
 </div>
+<script>
+function myFunction() {
 
+  var len = document.getElementById("result").rows[0].cells.length;
+  var length = document.getElementById("result").rows[0].cells.length;
+  var tocheck = document.getElementById("2").textContent;
+  var element = document.getElementById("lowest_1").textContent;
+  var prefix=''
+  var prefix_low = 'lowest_'
+  var rows = (document.getElementById('result').getElementsByTagName("tbody")[0].getElementsByTagName("tr").length);
+  var n=1;
+  var r=1;
+  alert(length);
+
+  for( var j=r; j<=rows; j++){
+
+    for(var i=n; i<=len; i++){
+      // console.log(i);
+      var tocheck = document.getElementById(prefix + i).textContent;
+      var element = document.getElementById(prefix_low + j).textContent;
+      console.log(tocheck + element);
+      if(element == tocheck){
+        var change = document.getElementById(i);
+        change.classList.remove("bg-dark");
+        change.classList.add("bg-success");
+      }
+    }
+
+
+    n = i
+    console.log(n);
+    len+=length
+    console.log(len);
+
+    // console.log('r ' + r);
+    // len = len + rows
+  }
+
+
+}
+</script>
   <div class="row mx-2">
     <div class="col-12 col-lg-2">
+      <button class="btn btn-success btn-block" type="submit" value="szukaj" onclick="myFunction()">sprawdz</button>
       <form class="form mx-auto" method="get" action="" style="max-width:300px;">
-        <input class="btn btn-info btn-block" type="submit" value="szukaj" />
+        <button class="btn btn-info btn-block" type="submit" value="szukaj">Szukaj</button>
         <textarea class="form-control mr-1" rows="22" type="text" name="q"  placeholder="Wyszukaj wiele">{{ request.GET.q}}</textarea>
     </form>
 
     </div>
     <div class="col-12 col-lg-2 p-0">
-      <table class="table table-sm table-dark">
+      <table class="table table-sm table-dark" >
         <thead>
           <tr>
             {% if brand_id == "6" %}
@@ -47,11 +88,11 @@
             {% for code in code_price %}
           <tr>
             {% if code %}
-            <td class="bg-dark text-center border text-light">{{code.0.kodtowaru}}</td>
+            <td class="bg-dark text-center border text-light" >{{code.0.kodtowaru}}</td>
             {% else %}
             <td class="bg-warning text-center border text-light">brak</td>
             {% endif %}
-            <td class="bg-dark text-center border text-light">{{code.0.cenakoncowa_eur__min}}</td>
+            <td class="bg-dark text-center border text-light" id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -59,7 +100,7 @@
     </div>
 
     <div class="col-12 col-lg-8 p-0">
-      <table class="table table-sm table-dark">
+      <table class="table table-sm table-dark" id="result">
         <thead>
           <tr class="bg-secondary ">
             {% for kontrahent in kontrahenci %}
@@ -77,12 +118,9 @@
           <tr >
             {% for item in final_result %}
               {% if  item.0.cenakoncowa_eur %}
-                {% if item.0.cenakoncowa_eur == prices.0.cenakoncowa_eur %}
-                <td class="text-center bg-dark border text-danger">{{ item.0.cenakoncowa_eur }}{{forloop.counter}}</td>
-                {% endif %}
-                <td class="text-center bg-dark border text-light">{{ item.0.cenakoncowa_eur }}{{forloop.counter}}</td>
+                <td class="text-center bg-dark  border text-light" id="{{forloop.counter}}">{{ item.0.cenakoncowa_eur }}</td>
               {% else %}
-                <td class="text-center bg-dark border text-warning">N/A</td>
+                <td class="text-center bg-dark border text-warning" id="{{forloop.counter}}">N/A</td>
               {% endif %}
               <!-- if last column in row -->
               {% with num=kontrahenci_length %}
@@ -99,5 +137,7 @@
   </div>
 </div>
 </div>
+
+
 
 {% endblock %}

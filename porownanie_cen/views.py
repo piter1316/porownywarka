@@ -85,7 +85,6 @@ def brand_details(request,pk):
     for result in by_price:
         final_result.append(result.values('kontrahentkod', 'cenakoncowa_eur','kodtowaru').order_by('cenakoncowa_eur'))
 
-
     context = {
         'products': all_products,
         'base_view': base_view,
