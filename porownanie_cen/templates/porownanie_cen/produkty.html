@@ -2,38 +2,19 @@
 
 {% block body %}
 {% load static %}
-<div class="mt-1">
-  <div class="container">
-    {% for item in brand %}
-      <div class="">
-        <div class="row mx-auto w-50">
-          <h1 class="text-center">
-            {{ item.nazwa}}
-          </h1>
-          {% if item.logo %}
-            <img class="ml-2" src="{{ item.logo.url }}" width="50" height="50">
-            {% else %}
-            <img class="ml-2" src="{% static 'porownanie_cen/' %}img/RECE.png" width="50" height="50">
-            {% endif %}
-          {% endfor %}
-        </div>
 
-      </div>
-  </div>
-</div>
 <script>
 function myFunction() {
 
   var len = document.getElementById("result").rows[0].cells.length;
   var length = document.getElementById("result").rows[0].cells.length;
-  var tocheck = document.getElementById("2").textContent;
-  var element = document.getElementById("lowest_1").textContent;
+
   var prefix=''
   var prefix_low = 'lowest_'
   var rows = (document.getElementById('result').getElementsByTagName("tbody")[0].getElementsByTagName("tr").length);
   var n=1;
   var r=1;
-  alert(length);
+
 
   for( var j=r; j<=rows; j++){
 
@@ -54,12 +35,7 @@ function myFunction() {
     console.log(n);
     len+=length
     console.log(len);
-
-    // console.log('r ' + r);
-    // len = len + rows
   }
-
-
 }
 </script>
   <div class="row mx-2">
@@ -88,11 +64,11 @@ function myFunction() {
             {% for code in code_price %}
           <tr>
             {% if code %}
-            <td class="bg-dark text-center border text-light" >{{code.0.kodtowaru}}</td>
+            <td class="bg-warning text-center border text-dark p-0" >{{code.0.kodtowaru}}</td>
             {% else %}
-            <td class="bg-warning text-center border text-light">brak</td>
+            <td class="bg-danger text-center border text-light">brak</td>
             {% endif %}
-            <td class="bg-dark text-center border text-light" id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
+            <td class="bg-info text-center border text-light " id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
           </tr>
           {% endfor %}
         </tbody>
