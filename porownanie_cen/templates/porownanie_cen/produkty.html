@@ -29,13 +29,12 @@ function myFunction() {
         change.classList.add("bg-success");
       }
     }
-
-
     n = i
     console.log(n);
     len+=length
     console.log(len);
   }
+  
 }
 </script>
   <div class="row mx-2">
@@ -50,14 +49,20 @@ function myFunction() {
     <div class="col-12 col-lg-2 p-0">
       <table class="table table-sm table-dark" >
         <thead>
-          <tr>
+          <tr class="bg-secondary text-center border text-warning">
+            <th class="border">Razem:</th>
+            <th class="border">
+              as_2
+            </th>
+          </tr>
+          <tr class="bg-primary text-light text-center" >
             {% if brand_id == "6" %}
-            <th class="bg-secondary text-center border text-light" scope="col">KOD</th>
+            <th class="border" scope="col">KOD</th>
             {% else %}
-            <th class="bg-secondary text-center border text-light" scope="col">KOD</th>
+            <th class="border" scope="col">KOD</th>
             {% endif %}
 
-            <th class="bg-secondary text-center border text-light" scope="col">CENA</th>
+            <th class="border" scope="col">CENA</th>
           </tr>
         </thead>
         <tbody>
@@ -78,13 +83,20 @@ function myFunction() {
     <div class="col-12 col-lg-8 p-0">
       <table class="table table-sm table-dark" id="result">
         <thead>
-          <tr class="bg-secondary ">
+          <tr class="text-center bg-secondary  text-warning">
+            {% for kontrahent in kontrahenci %}
+            <th class="border">
+              cena
+            </th>
+            {% endfor %}
+          </tr>
+          <tr class="bg-primary text-center border text-light">
             {% for kontrahent in kontrahenci %}
             {% with x=kontrahenci_length %}
             {% if x > 5 %}
-            <th class="text-center border text-light"><small>{{ kontrahent.kontrahentkod }}</small></th>
+            <th class="border"><small>{{ kontrahent.kontrahentkod }}</small></th>
             {% else %}
-            <th class="text-center border text-light">{{ kontrahent.kontrahentkod }}</th>
+            <th class="border">{{ kontrahent.kontrahentkod }}</th>
             {% endif %}
             {% endwith %}
           {% endfor %}
