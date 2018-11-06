@@ -7,3 +7,9 @@ body {
 .table-background{
   background-color: rgb(217, 225, 242) !important;
 }
+.lowest-background{
+  background-color: rgb(106, 136, 204) !important;
+}
+.codes-background{
+  background-color: rgb(244, 176, 132) !important;
+}

@@ -4,39 +4,52 @@
 {% load static %}
 
   <div class="row mx-2" >
-    <div class="col-12 col-lg-2">
+    <div class="col-12 col-lg-1 p-0">
       <form class="form mx-auto" method="get" action="" style="max-width:300px;">
         <button class="btn btn-info btn-block" type="submit" value="szukaj">Szukaj</button>
         <textarea class="form-control mr-1" rows="22" type="text" name="q"  placeholder="Wyszukaj wiele">{{ request.GET.q}}</textarea>
     </form>
 
     </div>
-    <div class="col-12 col-lg-2 p-0">
+    <div class="col-12 col-lg-3 p-0">
       <table class="table table-sm table-dark" >
         <thead>
           <tr class="bg-secondary text-center border text-warning">
-            <th class="border border-right-0 text-right">Razem:</th>
+
+            <th colspan="2" class="border border-right-0 text-right">Razem:</th>
             <th class="border border-left-0" id="lowest_sum">0.00</th>
           </tr>
           <tr class="bg-primary text-light text-center" >
-            {% if brand_id == "6" %}
-            <th class="border" scope="col">KOD</th>
+            {% with x=kontrahenci_length %}
+            {% if x > 5 %}
+            <th class="border" scope="col"><small>KOD</small></th>
+            <th class="border" scope="col"><small>Ilość</small></th>
+            <th class="border" scope="col"><small>CENA</small></th>
+
             {% else %}
             <th class="border" scope="col">KOD</th>
-            {% endif %}
-
+            <th class="border" scope="col">Ilość</th>
             <th class="border" scope="col">CENA</th>
+
+            {% endif %}
+            {% endwith %}
+
+
           </tr>
         </thead>
         <tbody>
             {% for code in code_price %}
-          <tr>
+          <tr >
             {% if code %}
-            <td class="bg-warning text-center border text-dark p-0" >{{code.0.kodtowaru}}</td>
+            <td class="codes-background text-center border text-dark " >{{code.0.kodtowaru}}</td>
+            <td class="table-background text-center border text-dark " >1</td>
+            <td class="lowest-background text-center border text-light " id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
             {% else %}
             <td class="bg-danger text-center border text-light">brak</td>
+            <td class="table-background text-center border text-dark " >0</td>
+            <td class="lowest-background text-center border text-light " id="lowest_{{forloop.counter}}">0</td>
             {% endif %}
-            <td class="bg-info text-center border text-light " id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
+
           </tr>
           {% endfor %}
         </tbody>
