@@ -4,13 +4,6 @@
 {% load static %}
 
   <div class="row mx-2" >
-    <div class="col-12 col-lg-1 p-0">
-      <form class="form mx-auto" method="get" action="" style="max-width:300px;">
-        <button class="btn btn-info btn-block" type="submit" value="szukaj">Szukaj</button>
-        <textarea class="form-control mr-1" rows="22" type="text" name="q"  placeholder="Wyszukaj wiele">{{ request.GET.q}}</textarea>
-    </form>
-
-    </div>
     <div class="col-12 col-lg-3 p-0">
       <table class="table table-sm table-dark" >
         <thead>
@@ -56,7 +49,7 @@
       </table>
     </div>
 
-    <div class="col-12 col-lg-8 p-0">
+    <div class="col-12 col-lg-9 p-0">
       <table class="table table-sm table-dark" id="result">
         <thead>
           <tr class="text-center bg-secondary  text-warning">

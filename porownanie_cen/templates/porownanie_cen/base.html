@@ -13,6 +13,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="{% static 'porownanie_cen/myJS.js' %}"></script>
 
+
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body onload="myFunction()">
@@ -34,13 +36,26 @@
           <li class="nav-item m-0 ml-lg-5">
             <p class="btn text-light m-0 font-weight-bold">
               {% if brand %}
-              Porównanie cen:
               {% for item in brand %}
                 {{ item.nazwa}}
               {% endfor %}
-              {% endif %}
+
             </p>
           </li>
+          <li>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Wprowadź kody
+              </button>
+              <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuButton">
+                <form class="form-inline" method="get" action="">
+                  <textarea id="txt1" class="form-control p-0" rows="15" type="text" name="q"  placeholder="Wyszukaj wiele" style="z-index:99">{{ request.GET.q}}</textarea>
+                  <button class="btn btn-info btn-block" type="submit" value="szukaj">Szukaj</button>
+                </form>
+              </div>
+            </div>
+          </li>
+          {% endif %}
         </ul>
 
         <ul class="navbar-nav nabar-right">
