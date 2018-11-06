@@ -3,43 +3,8 @@
 {% block body %}
 {% load static %}
 
-<script>
-function myFunction() {
-
-  var len = document.getElementById("result").rows[0].cells.length;
-  var length = document.getElementById("result").rows[0].cells.length;
-
-  var prefix=''
-  var prefix_low = 'lowest_'
-  var rows = (document.getElementById('result').getElementsByTagName("tbody")[0].getElementsByTagName("tr").length);
-  var n=1;
-  var r=1;
-
-
-  for( var j=r; j<=rows; j++){
-
-    for(var i=n; i<=len; i++){
-      // console.log(i);
-      var tocheck = document.getElementById(prefix + i).textContent;
-      var element = document.getElementById(prefix_low + j).textContent;
-      console.log(tocheck + element);
-      if(element == tocheck){
-        var change = document.getElementById(i);
-        change.classList.remove("bg-dark");
-        change.classList.add("bg-success");
-      }
-    }
-    n = i
-    console.log(n);
-    len+=length
-    console.log(len);
-  }
-  
-}
-</script>
-  <div class="row mx-2">
+  <div class="row mx-2" >
     <div class="col-12 col-lg-2">
-      <button class="btn btn-success btn-block" type="submit" value="szukaj" onclick="myFunction()">sprawdz</button>
       <form class="form mx-auto" method="get" action="" style="max-width:300px;">
         <button class="btn btn-info btn-block" type="submit" value="szukaj">Szukaj</button>
         <textarea class="form-control mr-1" rows="22" type="text" name="q"  placeholder="Wyszukaj wiele">{{ request.GET.q}}</textarea>
@@ -50,10 +15,8 @@ function myFunction() {
       <table class="table table-sm table-dark" >
         <thead>
           <tr class="bg-secondary text-center border text-warning">
-            <th class="border">Razem:</th>
-            <th class="border">
-              as_2
-            </th>
+            <th class="border border-right-0 text-right">Razem:</th>
+            <th class="border border-left-0" id="lowest_sum">0.00</th>
           </tr>
           <tr class="bg-primary text-light text-center" >
             {% if brand_id == "6" %}
@@ -85,12 +48,12 @@ function myFunction() {
         <thead>
           <tr class="text-center bg-secondary  text-warning">
             {% for kontrahent in kontrahenci %}
-            <th class="border">
-              cena
+            <th class="border" id="cena_kontrahent_{{forloop.counter}}">
+              0.00
             </th>
             {% endfor %}
           </tr>
-          <tr class="bg-primary text-center border text-light">
+          <tr class="bg-primary text-center border border-dark text-light ">
             {% for kontrahent in kontrahenci %}
             {% with x=kontrahenci_length %}
             {% if x > 5 %}
@@ -103,18 +66,20 @@ function myFunction() {
           </tr>
         </thead>
         <tbody>
-          <tr >
+          {% if final_result %}
+            <tr class="row_result" >
+          {% endif %}
             {% for item in final_result %}
               {% if  item.0.cenakoncowa_eur %}
-                <td class="text-center bg-dark  border text-light" id="{{forloop.counter}}">{{ item.0.cenakoncowa_eur }}</td>
+                <td class="text-center table-background  border border-dark text-dark" id="{{forloop.counter}}">{{ item.0.cenakoncowa_eur }}</td>
               {% else %}
-                <td class="text-center bg-dark border text-warning" id="{{forloop.counter}}">N/A</td>
+                <td class="text-center table-background border border-dark text-danger" id="{{forloop.counter}}">N/A</td>
               {% endif %}
               <!-- if last column in row -->
               {% with num=kontrahenci_length %}
                 {% if forloop.counter|divisibleby:num and not forloop.last %}
               </tr>
-              <tr>
+              <tr class="row_result" >
             {% endif %}
           {% endwith %}
         {% endfor %}

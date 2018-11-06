@@ -3,3 +3,7 @@ body {
 
     background: url('img/background.jpg');
 }
+
+.table-background{
+  background-color: rgb(217, 225, 242) !important;
+}
