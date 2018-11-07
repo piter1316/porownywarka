@@ -13,3 +13,10 @@ body {
 .codes-background{
   background-color: rgb(244, 176, 132) !important;
 }
+
+
+.table {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
