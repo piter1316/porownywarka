@@ -33,7 +33,11 @@
             {% for code in code_price %}
           <tr >
             {% if code %}
-            <td class="codes-background text-center border text-dark " >{{code.0.kodtowaru}}</td>
+            {% if code.0.kodtowaru !=  code.0.klucz %}
+            <td class="codes-background text-center border text-dark " >{{code.0.klucz}}!</td>
+            {% else %}
+            <td class="codes-background text-center border text-dark " >{{code.0.klucz}}</td>
+            {% endif %}
             <td class="table-background text-center border text-dark " >1</td>
             {% if code.0.cenakoncowa_eur__min %}
             <td class="lowest-background text-center border text-light " id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
@@ -41,7 +45,9 @@
             <td class="lowest-background text-center border text-light " id="lowest_{{forloop.counter}}">0</td>
             {% endif %}
             {% else %}
+
             <td class="bg-danger text-center border text-light">brak</td>
+
             <td class="table-background text-center border text-dark " >0</td>
             <td class="lowest-background text-center border text-light " id="lowest_{{forloop.counter}}">0</td>
             {% endif %}
@@ -99,7 +105,7 @@
   </div>
 </div>
 </div>
-
+{{codes.1}}
 
 
 

@@ -70,6 +70,12 @@ def brand_details(request,pk):
 
         codes_to_query = query.splitlines()
         for code in codes_to_query:
+            code = code.replace('-', '')
+            code = code.replace('/', '')
+            code = code.replace('_', '')
+            code = code.replace(' ', '')
+            code = code.replace("'", "")
+
             if code != '':
                 codes_list.append(Produkt.objects.raw(
                     "select kontrahentKod, kodTowaru, min(cenaKoncowa_EUR) "
@@ -77,13 +83,13 @@ def brand_details(request,pk):
                     "where brand_id ={} and kodTowaru ='{}' ".format(pk,code)))
 
                 codes.append(code)
-                code_price.append(Produkt.objects.values('kodtowaru').filter(kodtowaru=code, brand_id=pk).annotate(Min('cenakoncowa_eur')))
+                code_price.append(Produkt.objects.values('klucz','kodtowaru').filter(klucz=code, brand_id=pk).annotate(Min('cenakoncowa_eur')))
 
                 for kontrahent in kontrahenci:
-                    by_price.append(Produkt.objects.values('kodtowaru', 'cenakoncowa_eur', 'kontrahentkod').filter(kontrahentkod=kontrahent['kontrahentkod'], kodtowaru=code, brand_id=pk))
+                    by_price.append(Produkt.objects.values('klucz', 'cenakoncowa_eur', 'kontrahentkod').filter(kontrahentkod=kontrahent['kontrahentkod'], klucz=code, brand_id=pk))
 
     for result in by_price:
-        final_result.append(result.values('kontrahentkod', 'cenakoncowa_eur','kodtowaru').order_by('cenakoncowa_eur'))
+        final_result.append(result.values('kontrahentkod', 'cenakoncowa_eur','klucz').order_by('cenakoncowa_eur'))
 
     context = {
         'products': all_products,
