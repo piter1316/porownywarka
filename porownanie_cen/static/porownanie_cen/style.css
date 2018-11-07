@@ -14,9 +14,9 @@ body {
   background-color: rgb(244, 176, 132) !important;
 }
 
+.dropdown-menu-center {
 
-.table {
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    -webkit-transform: translate(-20%, 0);
+    -o-transform: translate(-20%, 0);
+    transform: translate(-20%, 0);
 }

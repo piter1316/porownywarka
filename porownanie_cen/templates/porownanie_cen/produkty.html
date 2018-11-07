@@ -4,7 +4,7 @@
 {% load static %}
   <div class="row mx-2 " >
     <div class="col-12 col-lg-3 p-0">
-      <table class="table table-sm table-dark" >
+      <table class="w-100" >
         <thead>
           <tr class="bg-secondary text-center border text-warning">
 
@@ -14,14 +14,14 @@
           <tr class="bg-primary text-light text-center" >
             {% with x=kontrahenci_length %}
             {% if x > 5 %}
-            <th class="border" scope="col"><small>KOD</small></th>
-            <th class="border" scope="col"><small>Ilość</small></th>
-            <th class="border" scope="col"><small>CENA</small></th>
+            <th class="border p-1" scope="col"><small>KOD</small></th>
+            <th class="border p-1" scope="col"><small>Ilość</small></th>
+            <th class="border p-1" scope="col"><small>CENA</small></th>
 
             {% else %}
-            <th class="border" scope="col">KOD</th>
-            <th class="border" scope="col">Ilość</th>
-            <th class="border" scope="col">CENA</th>
+            <th class="border p-1" scope="col">KOD</th>
+            <th class="border p-1" scope="col">Ilość</th>
+            <th class="border p-1" scope="col">CENA</th>
 
             {% endif %}
             {% endwith %}
@@ -53,7 +53,7 @@
     </div>
 
     <div class="col-12 col-lg-9 p-0">
-      <table class="table table-sm table-dark" id="result">
+      <table class="w-100" id="result">
         <thead>
           <tr class="text-center bg-secondary  text-warning">
             {% for kontrahent in kontrahenci %}
@@ -62,13 +62,13 @@
             </th>
             {% endfor %}
           </tr>
-          <tr class="bg-primary text-center border border-dark text-light ">
+          <tr  class="bg-primary text-center border border-dark text-light">
             {% for kontrahent in kontrahenci %}
             {% with x=kontrahenci_length %}
             {% if x > 5 %}
-            <th class="border"><small>{{ kontrahent.kontrahentkod }}</small></th>
+            <th class="border p-1" ><small>{{ kontrahent.kontrahentkod }}</small></th>
             {% else %}
-            <th class="border">{{ kontrahent.kontrahentkod }}</th>
+            <th class="border p-1" >{{ kontrahent.kontrahentkod }}</th>
             {% endif %}
             {% endwith %}
           {% endfor %}
@@ -99,6 +99,7 @@
   </div>
 </div>
 </div>
+
 
 
 

@@ -47,9 +47,9 @@
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Wprowadź kody
               </button>
-              <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuButton">
-                <form class="form-inline" method="get" action="">
-                  <textarea id="txt1" class="form-control p-0" rows="15" type="text" name="q"  placeholder="Wyszukaj wiele" style="z-index:99">{{ request.GET.q}}</textarea>
+              <div class="dropdown-menu dropdown-menu-center  p-0" aria-labelledby="dropdownMenuButton">
+                <form class="form-inline " method="get" action="" >
+                  <textarea id="txt1" class="form-control p-0" rows="15" cols="35"  type="text" name="q"  placeholder="Wyszukaj wiele" style="z-index:99">{{ request.GET.q}}</textarea>
                   <button class="btn btn-info btn-block" type="submit" value="szukaj">Szukaj</button>
                 </form>
               </div>
