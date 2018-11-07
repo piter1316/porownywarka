@@ -22,6 +22,7 @@ class Brand(models.Model):
 
 
 class Produkt(models.Model):
+    klucz = models.CharField(max_length=128, default="foobar")
     kodtowaru = models.CharField(db_column='kodTowaru', primary_key=True, max_length=128)
     kontrahentkod = models.CharField(db_column='kontrahentKod', max_length=64)
     kontrahentcennik = models.CharField(db_column='kontrahentCennik', max_length=16)

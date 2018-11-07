@@ -29,9 +29,9 @@ function myFunction() {
       n = i;
       len+=num_kontrahenci;
       price_txt = document.getElementById(prefix_low + j).textContent;
+
       if(price_txt){
         price_float = parseFloat(price_txt);
-
       } else{
         price_float = 0;
       }
