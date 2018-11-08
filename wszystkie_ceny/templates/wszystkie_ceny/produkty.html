@@ -24,6 +24,9 @@
     {% if result is not None %}
     {% for product in result %}
     <tr class="text-center">
+      {% if by_key %}
+      -----
+      {% endif %}
       <td>{{product.kodtowaru}}</td>
       <td>{{product.kontrahentkod}}</td>
       {% if product.cenakatalogowa_eur is None %}

@@ -74,7 +74,7 @@ def brand_details(request,pk):
             code = code.replace('/', '')
             code = code.replace('_', '')
             code = code.replace(' ', '')
-            code = code.replace("'", "")
+            code = code.replace('"', "")
 
             if code != '':
                 codes_list.append(Produkt.objects.raw(

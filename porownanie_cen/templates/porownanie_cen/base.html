@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>INT</title>
+  <title>
+    INT
+    {% if brand %}-
+    {% for item in brand %}
+      {{item.nazwa}}
+    {% endfor %}
+    {% endif %}
+  </title>
 
   <!--static-->
   {% load staticfiles %}

@@ -12,9 +12,6 @@ function myFunction() {
     var lowest_sum = document.getElementById('lowest_sum').textContent;
     var lowest_prices_sum = 0;
     var all_prices = [];
-
-    console.log(rows);
-
     for( var j=r; j<=rows; j++){
 
       for(var i=n; i<=len; i++){
@@ -59,17 +56,12 @@ function myFunction() {
       len+=num_kontrahenci;
     }
 
-
     len = document.getElementById("result").rows[0].cells.length;
     kontrahent_price_sum = 0;
 
-
     for(var n=0; n<len; n++ ){
-
       for(var i=n; i<=all_prices.length-1;i=i+num_kontrahenci){
-
         kontrahent_price_sum+=all_prices[i]
-
       }
       var kontrahent_price_sum_to_show = document.getElementById('cena_kontrahent_' + (n+1));
       kontrahent_price_sum_to_show.innerHTML = kontrahent_price_sum.toFixed(2);
