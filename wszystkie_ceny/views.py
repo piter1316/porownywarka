@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from porownanie_cen.models import Produkt
+from porownanie_cen.models import Brand
 
 
 def wszystkie_ceny_view(request):
@@ -20,14 +21,24 @@ def wszystkie_ceny_view(request):
         query = query.replace(' ', '')
         query = query.replace('"', "")
         not_found_tip = Produkt.objects.raw("SELECT * FROM produkty WHERE kodtowaru LIKE %s LIMIT 10", (kod_query + "%",))
-
-        result = Produkt.objects.raw("SELECT * from produkty where kodtowaru = '{}' order by cenakoncowa_eur".format(kod_query))
+        result = Produkt.objects.raw("""SELECT 
+        produkty.*,
+        brandy.nazwa
+        from produkty 
+        left join  brandy  on produkty.brand_id = brandy.id
+        where kodtowaru = '{}' order by cenakoncowa_eur""".format(kod_query))
         info = False
         if not result:
             info = True
             result = Produkt.objects.raw(
-                "SELECT * from produkty where klucz = '{}' order by cenakoncowa_eur".format(query))
-            not_found_tip = Produkt.objects.raw("SELECT * FROM produkty WHERE klucz LIKE %s LIMIT 10",
+                """SELECT produkty.*,
+                brandy.nazwa
+                from produkty 
+                left join  brandy  on produkty.brand_id = brandy.id
+                where klucz = '{}' order by cenakoncowa_eur""".format(query))
+            not_found_tip = Produkt.objects.raw("SELECT produkty.*, brandy.nazwa FROM produkty "
+                                                "left join  brandy  on produkty.brand_id = brandy.id"
+                                                " WHERE klucz LIKE %s LIMIT 10",
                                                 (query + "%",))
 
         #     by_key = True

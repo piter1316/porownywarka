@@ -2,10 +2,13 @@
 
 {% block body %}
 <div class="container mt-2">
-  <div class="d-block mx-auto mb-3">
-    <form class="form-inline mx-auto" method="get" action="" style="max-width:300px;">
-      <input class="form-control mr-1" type="text" name="q" placeholder="Kod Towaru" value="{{ request.GET.q}}" />
-      <input class="btn btn-info" type="submit" value="szukaj" />
+  <div class="mb-3">
+    <form class="form-inline mx-auto" method="get" action="" >
+      <div class="mx-auto">
+        <input class="form-control mr-1" type="text" name="q" placeholder="Kod Towaru" value="{{ request.GET.q}}" />
+        <input class="btn btn-info" type="submit" value="szukaj" />
+      </div>
+
     </form>
   </div>
 
@@ -17,6 +20,7 @@
       <th scope="col">Cena Katalogowa EUR</th>
       <th scope="col">Cena Koncowa EUR</th>
       <th scope="col">Z dnia</th>
+      <th scope="col">BRAND</th>
     </tr>
   </thead>
   <tbody>
@@ -39,14 +43,16 @@
 
       <td>{{product.cenakoncowa_eur}}</td>
       <td>{{product.dataimportu}}</td>
+      <td>{{product.nazwa}}</td>
+
     </tr>
       {% empty %}
       <tr class="text-center">
-        <td colspan="5"class="alert alert-danger"><p class="lead text-center"> BRAK KODU: <span class="font-weight-bold">{{ query }}</span> W BAZIE</p></td>
+        <td colspan="6"class="alert alert-danger"><p class="lead text-center"> BRAK KODU: <span class="font-weight-bold">{{ query }}</span> W BAZIE</p></td>
       </tr>
       {% if not_found_tip %}
       <tr class="bg-info text-center">
-        <td colspan="5">
+        <td colspan="6">
           <h3 class="text-light text-center">Podobne kody:</h3>
         </td>
       </tr>
@@ -61,6 +67,7 @@
         {% endif %}
         <td>{{product.cenakoncowa_eur}}</td>
         <td>{{product.dataimportu}}</td>
+        <td>{{product.nazwa}}</td>
       </tr>
 
       {% endfor %}
