@@ -15,7 +15,6 @@ class Brand(models.Model):
     def get_absolute_url(self):
         return reverse('porownanie_cen:detail', kwargs={'pk': self.pk})
 
-
     class Meta:
         managed = True
         db_table = 'Brandy'

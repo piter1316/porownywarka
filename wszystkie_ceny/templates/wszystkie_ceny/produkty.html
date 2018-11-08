@@ -2,7 +2,6 @@
 
 {% block body %}
 <div class="container mt-2">
-  <h3 class="text-center">WSZYSTKIE PRODUKTY</h3>
   <div class="d-block mx-auto mb-3">
     <form class="form-inline mx-auto" method="get" action="" style="max-width:300px;">
       <input class="form-control mr-1" type="text" name="q" placeholder="Kod Towaru" value="{{ request.GET.q}}" />
@@ -23,11 +22,14 @@
   <tbody>
     {% if result is not None %}
     {% for product in result %}
+    {% if info %}
+    <div class="alert alert-warning">
+      nie znaleziono {{kod_query}} wyszukano na podstawie {{ query}}
+    </div>
+    {% endif %}
     <tr class="text-center">
-      {% if by_key %}
-      -----
-      {% endif %}
-      <td>{{product.kodtowaru}}</td>
+
+      <td>{{product.kodtowaru}} </td>
       <td>{{product.kontrahentkod}}</td>
       {% if product.cenakatalogowa_eur is None %}
       <td>----</td>
@@ -62,12 +64,14 @@
       </tr>
 
       {% endfor %}
+
       {% endif %}
 
 
 
 
     {% endfor %}
+
     {% else %}
 
     {% for product in products %}
