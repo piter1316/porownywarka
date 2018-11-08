@@ -27,6 +27,8 @@ def wszystkie_ceny_view(request):
             info = True
             result = Produkt.objects.raw(
                 "SELECT * from produkty where klucz = '{}' order by cenakoncowa_eur".format(query))
+            not_found_tip = Produkt.objects.raw("SELECT * FROM produkty WHERE klucz LIKE %s LIMIT 10",
+                                                (query + "%",))
 
         #     by_key = True
         #     result = Produkt.objects.raw("SELECT * from produkty where klucz = '{}' order by cenakoncowa_eur".format(query))
