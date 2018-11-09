@@ -35,6 +35,7 @@ function myFunction() {
       lowest_prices_sum += price_float;
 
     }
+
     var price_to_show = document.getElementById('lowest_sum');
     price_to_show.innerHTML= lowest_prices_sum.toFixed(2);
 
@@ -69,3 +70,28 @@ function myFunction() {
     }
   }
 }
+
+function copy(){
+    iter = 0;
+    var rows = document.getElementById('prices').getElementsByTagName("tbody")[0].getElementsByTagName("tr").length;
+    var cells = document.getElementById('prices').getElementsByTagName("tbody")[0].getElementsByTagName("td").length;
+    var len = document.getElementById("prices").rows[0].cells.length;
+    var toCopy ='';
+    var iter = 0;
+    for( var j=1; j<=rows; j++){
+       for(var i=iter; i<len+1; i++){
+       var text = document.getElementById("prices").getElementsByTagName("tbody")[0].getElementsByTagName("td")[i].innerText;
+       toCopy+=text;
+      }
+      iter=i;
+      len+=3;
+      toCopy+='\n';
+    }
+    var toCopyArea = document.getElementById("copy");
+    toCopyArea.innerHTML=toCopy;
+    toCopyArea.select();
+    document.execCommand("copy");
+
+alert('skopiowano');
+}
+

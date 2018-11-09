@@ -9,14 +9,13 @@ def wszystkie_ceny_view(request):
         brandy.nazwa
         from produkty 
         left join  brandy  on produkty.brand_id = brandy.id
-        limit 20
-        """)
+        limit 20""")
+
     query = request.GET.get('q')
     result = None
     not_found_tip = None
     by_code = None
     info = False
-    in_wszystkie_produkty = 1
     kod_query = None
 
     if query:
@@ -56,7 +55,6 @@ def wszystkie_ceny_view(request):
         'not_found_tip': not_found_tip,
         'by_code': by_code,
         'info': info,
-        'in_wszystkie_produkty': in_wszystkie_produkty,
         'kod_query': kod_query,
     }
     return render(request, 'wszystkie_ceny/produkty.html', context)

@@ -76,10 +76,9 @@ def brand_details(request, pk):
 
             if code != '':
                 result = Produkt.objects.values('klucz', 'kodtowaru').filter(kodtowaru=kod_query, brand_id=pk).annotate(
-                        Min('cenakoncowa_eur'))
+                    Min('cenakoncowa_eur'))
 
                 if not result:
-
                     result = Produkt.objects.values('klucz', 'kodtowaru').filter(klucz=code, brand_id=pk).annotate(
                         Min('cenakoncowa_eur'))
 
@@ -87,7 +86,6 @@ def brand_details(request, pk):
                 for kontrahent in kontrahenci:
                     by_price.append(Produkt.objects.values('kodtowaru', 'cenakoncowa_eur', 'kontrahentkod').filter(
                         kontrahentkod=kontrahent['kontrahentkod'], kodtowaru=kod_query, brand_id=pk))
-
 
     for result in by_price:
         final_result.append(result.values('kontrahentkod', 'cenakoncowa_eur', 'klucz').order_by('cenakoncowa_eur'))
