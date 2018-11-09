@@ -60,9 +60,9 @@ def brand_details(request, pk):
     final_result = []
     code_price = []
     brand_id = pk
-    cos = ''
     kontrahenci = Produkt.objects.values('kontrahentkod').distinct().filter(brand_id=pk)
     kontrahenci_length = len(kontrahenci)
+
     if query:
         codes_to_query = query.splitlines()
         for code in codes_to_query:
@@ -75,14 +75,19 @@ def brand_details(request, pk):
             code = code.replace('\t', "")
 
             if code != '':
+                result = Produkt.objects.values('klucz', 'kodtowaru').filter(kodtowaru=kod_query, brand_id=pk).annotate(
+                        Min('cenakoncowa_eur'))
 
-                code_price.append(
-                    Produkt.objects.values('klucz', 'kodtowaru').filter(kodtowaru=kod_query, brand_id=pk).annotate(
-                        Min('cenakoncowa_eur')))
+                if not result:
 
+                    result = Produkt.objects.values('klucz', 'kodtowaru').filter(klucz=code, brand_id=pk).annotate(
+                        Min('cenakoncowa_eur'))
+
+                code_price.append(result)
                 for kontrahent in kontrahenci:
                     by_price.append(Produkt.objects.values('kodtowaru', 'cenakoncowa_eur', 'kontrahentkod').filter(
                         kontrahentkod=kontrahent['kontrahentkod'], kodtowaru=kod_query, brand_id=pk))
+
 
     for result in by_price:
         final_result.append(result.values('kontrahentkod', 'cenakoncowa_eur', 'klucz').order_by('cenakoncowa_eur'))
@@ -99,6 +104,5 @@ def brand_details(request, pk):
         'kontrahenci_length': kontrahenci_length,
         'code_price': code_price,
         'brand_id': brand_id,
-        'cos': cos,
     }
     return render(request, 'porownanie_cen/produkty.html', context)

@@ -4,7 +4,13 @@ from porownanie_cen.models import Brand
 
 
 def wszystkie_ceny_view(request):
-    products_list = Produkt.objects.raw("select * from produkty limit 20")
+    products_list = Produkt.objects.raw("""SELECT 
+        produkty.*,
+        brandy.nazwa
+        from produkty 
+        left join  brandy  on produkty.brand_id = brandy.id
+        limit 20
+        """)
     query = request.GET.get('q')
     result = None
     not_found_tip = None
@@ -14,14 +20,15 @@ def wszystkie_ceny_view(request):
     kod_query = None
 
     if query:
-        kod_query = query.replace("'",'')
+        kod_query = query.replace("'", '')
         query = query.replace('-', '')
         query = query.replace('/', '')
         query = query.replace('_', '')
         query = query.replace(' ', '')
         query = query.replace('"', "")
         query = query.replace('\t', "")
-        not_found_tip = Produkt.objects.raw("SELECT * FROM produkty WHERE kodtowaru LIKE %s LIMIT 10", (kod_query + "%",))
+        not_found_tip = Produkt.objects.raw("SELECT * FROM produkty WHERE kodtowaru LIKE %s LIMIT 10",
+                                            (kod_query + "%",))
         result = Produkt.objects.raw("""SELECT 
         produkty.*,
         brandy.nazwa
