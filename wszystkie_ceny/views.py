@@ -20,6 +20,7 @@ def wszystkie_ceny_view(request):
         query = query.replace('_', '')
         query = query.replace(' ', '')
         query = query.replace('"', "")
+        query = query.replace('\t', "")
         not_found_tip = Produkt.objects.raw("SELECT * FROM produkty WHERE kodtowaru LIKE %s LIMIT 10", (kod_query + "%",))
         result = Produkt.objects.raw("""SELECT 
         produkty.*,
@@ -40,9 +41,6 @@ def wszystkie_ceny_view(request):
                                                 "left join  brandy  on produkty.brand_id = brandy.id"
                                                 " WHERE klucz LIKE %s LIMIT 10",
                                                 (query + "%",))
-
-        #     by_key = True
-        #     result = Produkt.objects.raw("SELECT * from produkty where klucz = '{}' order by cenakoncowa_eur".format(query))
 
     context = {
         'result': result,
