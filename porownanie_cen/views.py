@@ -1,7 +1,6 @@
 from django.db.models import Min
 from django.views import generic
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django import forms as F
+from django.views.generic.edit import UpdateView, DeleteView
 from porownanie_cen import forms
 from porownanie_cen.forms import UpdateBrand
 from .models import Brand, Produkt
@@ -62,6 +61,7 @@ def brand_details(request, pk):
     brand_id = pk
     kontrahenci = Produkt.objects.values('kontrahentkod').distinct().filter(brand_id=pk)
     kontrahenci_length = len(kontrahenci)
+    result = []
 
     if query:
         codes_to_query = query.splitlines()
@@ -81,7 +81,6 @@ def brand_details(request, pk):
                     result = list(result)
                     result.append("BY_KOD_TOWARU")
 
-
                 if not result:
                     result = Produkt.objects.values('klucz', 'kodtowaru').filter(klucz=code, brand_id=pk).annotate(
                         Min('cenakoncowa_eur'))
@@ -92,12 +91,11 @@ def brand_details(request, pk):
                     else:
                         code_price.append(code)
                 if result:
-
                     code_price.append(result)
 
                 for kontrahent in kontrahenci:
                     price = Produkt.objects.values('kodtowaru', 'cenakoncowa_eur', 'kontrahentkod').filter(
-                            kontrahentkod=kontrahent['kontrahentkod'], kodtowaru=kod_query, brand_id=pk)
+                        kontrahentkod=kontrahent['kontrahentkod'], kodtowaru=kod_query, brand_id=pk)
                     if not price:
                         price = Produkt.objects.values('klucz', 'cenakoncowa_eur', 'kontrahentkod').filter(
                             kontrahentkod=kontrahent['kontrahentkod'], klucz=code, brand_id=pk)

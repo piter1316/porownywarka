@@ -33,7 +33,6 @@ function myFunction() {
         price_float = 0;
       }
       lowest_prices_sum += price_float;
-
     }
 
     var price_to_show = document.getElementById('lowest_sum');
@@ -81,7 +80,14 @@ function copy(){
     for( var j=1; j<=rows; j++){
        for(var i=iter; i<len+1; i++){
        var text = document.getElementById("prices").getElementsByTagName("tbody")[0].getElementsByTagName("td")[i].innerText;
-       toCopy+=text;
+       text = text.replace('\t','')
+
+       if(i!=iter+2){
+        toCopy+=text+'\t';
+       }else{
+        toCopy+=text;
+       }
+
       }
       iter=i;
       len+=3;
@@ -98,7 +104,6 @@ function copy(){
         $(x).attr('data-original-title', 'Kopiuj do Schowka')
         .tooltip('show').delay(2000).tooltip('hide');
     },2000);
-
 }
 
 $(function () {

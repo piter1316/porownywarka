@@ -7,7 +7,6 @@
       <table class="w-100" id="prices" >
         <thead>
           <tr class="bg-secondary text-center border text-warning">
-
             <th colspan="2" class="border border-right-0 text-right">Razem:</th>
             <th class="border border-left-0" id="lowest_sum">0.00</th>
           </tr>
@@ -25,29 +24,21 @@
           <tr class="text-center">
             {% if code.0.cenakoncowa_eur__min %}
             {% if code.1 == "BY_KLUCZ" %}
-            <td class="codes-background   border text-dark " >
-              {{code.0.kodtowaru}}
-              <i class="fas fa-exclamation-circle float-right" data-toggle="tooltip" data-placement="right" title="Nie znaleziono: {{code.2}}. Wyszukano po: {{code.0.kodtowaru}}"></i>
-            </td>
+            <td class="codes-background border text-dark">{{code.0.kodtowaru}}<i class="fas fa-exclamation-circle" data-toggle="tooltip" data-placement="right" title="Nie znaleziono: {{code.2}}. Wyszukano po: {{code.0.kodtowaru}}"</i></td>
             {% else %}
-            <td class="codes-background  border text-dark " >
-              {{code.0.kodtowaru}}
-            </td>
+            <td class="codes-background  border text-dark " >{{code.0.kodtowaru}}</td>
             {% endif %}
-
-            <td class="table-background  border text-dark " >1</td>
+            <td class="table-background  border text-dark ">1</td>
             <!--suppress XmlDuplicatedId -->
             <td class="lowest-background  border text-light " id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
             {% else %}
-            <td class="bg-danger  border text-dark " >
+            <td class="bg-danger  border text-dark">
               {{code}}
             </td>
             <td class="bg-danger  border text-dark " >0</td>
             <!--suppress XmlDuplicatedId -->
             <td class="bg-danger  border text-light " id="lowest_{{forloop.counter}}">0</td>
-
             {% endif %}
-
           </tr>
           {% endfor %}
         </tbody>
@@ -101,6 +92,6 @@
   </div>
 </div>
 </div>
-<textarea name="name" rows="1" cols="80" id="copy" style="opacity:0;"></textarea>
-{{code_price.0.2}}
+<textarea name="name" rows="1" cols="20" id="copy" style="opacity:0;"></textarea>
+
 {% endblock %}

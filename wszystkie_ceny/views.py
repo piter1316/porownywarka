@@ -1,7 +1,7 @@
+from _mysql import result
+
 from django.shortcuts import render
 from porownanie_cen.models import Produkt
-from porownanie_cen.models import Brand
-
 
 def wszystkie_ceny_view(request):
     products_list = Produkt.objects.raw("""SELECT 
@@ -17,6 +17,7 @@ def wszystkie_ceny_view(request):
     by_code = None
     info = False
     kod_query = None
+    in_wszystkie_produkty = True
 
     if query:
         kod_query = query.replace("'", '')
@@ -34,7 +35,9 @@ def wszystkie_ceny_view(request):
         from produkty 
         left join  brandy  on produkty.brand_id = brandy.id
         where kodtowaru = '{}' order by cenakoncowa_eur""".format(kod_query))
-        info = False
+        if result:
+            result = list(result)
+            result.append("BY_KOD_TOWARU")
         if not result:
             info = True
             result = Produkt.objects.raw(
@@ -56,5 +59,6 @@ def wszystkie_ceny_view(request):
         'by_code': by_code,
         'info': info,
         'kod_query': kod_query,
+        'in_wszystkie_produkty': in_wszystkie_produkty,
     }
     return render(request, 'wszystkie_ceny/produkty.html', context)
