@@ -24,13 +24,14 @@
     </tr>
   </thead>
   <tbody>
-    {% if result is not None %}
-    {% for product in result %}
-    {% if info %}
+  {% if info %}
     <div class="alert alert-warning">
       nie znaleziono {{kod_query}} wyszukano na podstawie {{ query}}
     </div>
     {% endif %}
+    {% if result is not None %}
+    {% for product in result %}
+
     <tr class="text-center">
 
       <td>{{product.kodtowaru}} </td>

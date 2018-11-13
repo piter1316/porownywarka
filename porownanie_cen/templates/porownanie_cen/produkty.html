@@ -22,21 +22,29 @@
         </thead>
         <tbody>
             {% for code in code_price %}
-          <tr>
+          <tr class="text-center">
             {% if code.0.cenakoncowa_eur__min %}
-            <td class="codes-background text-center border text-dark " >
+            {% if code.1 == "BY_KLUCZ" %}
+            <td class="codes-background   border text-dark " >
+              {{code.0.kodtowaru}}
+              <i class="fas fa-exclamation-circle float-right" data-toggle="tooltip" data-placement="right" title="Nie znaleziono: {{code.2}}. Wyszukano po: {{code.0.kodtowaru}}"></i>
+            </td>
+            {% else %}
+            <td class="codes-background  border text-dark " >
               {{code.0.kodtowaru}}
             </td>
-            <td class="table-background text-center border text-dark " >1</td>
+            {% endif %}
+
+            <td class="table-background  border text-dark " >1</td>
             <!--suppress XmlDuplicatedId -->
-            <td class="lowest-background text-center border text-light " id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
+            <td class="lowest-background  border text-light " id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
             {% else %}
-            <td class="bg-danger text-center border text-dark " >
+            <td class="bg-danger  border text-dark " >
               {{code}}
             </td>
-            <td class="bg-danger text-center border text-dark " >0</td>
+            <td class="bg-danger  border text-dark " >0</td>
             <!--suppress XmlDuplicatedId -->
-            <td class="bg-danger text-center border text-light " id="lowest_{{forloop.counter}}">0</td>
+            <td class="bg-danger  border text-light " id="lowest_{{forloop.counter}}">0</td>
 
             {% endif %}
 
@@ -94,5 +102,5 @@
 </div>
 </div>
 <textarea name="name" rows="1" cols="80" id="copy" style="opacity:0;"></textarea>
-{{code_price}}
+{{code_price.0.2}}
 {% endblock %}
