@@ -35,9 +35,9 @@ def wszystkie_ceny_view(request):
         from produkty 
         left join  brandy  on produkty.brand_id = brandy.id
         where kodtowaru = '{}' order by cenakoncowa_eur""".format(kod_query))
-        if result:
-            result = list(result)
-            result.append("BY_KOD_TOWARU")
+        # if result:
+        #     result = list(result)
+        #     result.append("BY_KOD_TOWARU")
         if not result:
             info = True
             result = Produkt.objects.raw(
@@ -46,7 +46,10 @@ def wszystkie_ceny_view(request):
                 from produkty 
                 left join  brandy  on produkty.brand_id = brandy.id
                 where klucz = '{}' order by cenakoncowa_eur""".format(query))
-            not_found_tip = Produkt.objects.raw("SELECT produkty.*, brandy.nazwa FROM produkty "
+            if not result:
+                info = False
+
+                not_found_tip = Produkt.objects.raw("SELECT produkty.*, brandy.nazwa FROM produkty "
                                                 "left join  brandy  on produkty.brand_id = brandy.id"
                                                 " WHERE klucz LIKE %s LIMIT 10",
                                                 (query + "%",))

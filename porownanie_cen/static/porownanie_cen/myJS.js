@@ -96,11 +96,11 @@ function copy(){
     toCopyArea.innerHTML=toCopy;
     toCopyArea.select();
     document.execCommand("copy");
-    var x = document.getElementById("copyButton");
-    $(x).attr('data-original-title', 'Skopiowano!!!')
+    var copyButton = document.getElementById("copyButton");
+    $(copyButton).attr('data-original-title', 'Skopiowano!!!')
     .tooltip('show');
     setTimeout(function(){
-        $(x).attr('data-original-title', 'Kopiuj do Schowka')
+        $(copyButton).attr('data-original-title', 'Kopiuj do Schowka')
         .tooltip('show').delay(2000).tooltip('hide');
     },2000);
 }
