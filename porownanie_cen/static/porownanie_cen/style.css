@@ -20,3 +20,9 @@ body {
     -o-transform: translate(-20%, 0);
     transform: translate(-20%, 0);
 }
+
+.btn-tarnsparent{
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}

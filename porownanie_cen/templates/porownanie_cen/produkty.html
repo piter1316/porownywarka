@@ -12,28 +12,12 @@
             <th class="border border-left-0" id="lowest_sum">0.00</th>
           </tr>
           <tr class="bg-primary text-light text-center" >
-            {% with x=kontrahenci_length %}
-            {% if x > 5 %}
             <th class="border p-1" scope="col">
+              <button class="btn py-0 px-1 btn-tarnsparent text-white far fa-copy" onclick="copy()"  data-toggle="tooltip" data-placement="top" title="Kopiuj do Schowka" id="copyButton"></button>
               <small>KOD</small>
-              <i class="far fa-copy" onclick="copy()" title="Kopiuj do Schowka"></i>
             </th>
             <th class="border p-1" scope="col"><small>Ilość</small></th>
             <th class="border p-1" scope="col"><small>CENA</small></th>
-
-            {% else %}
-            <th class="border p-1" scope="col">
-              KOD
-              <i class="far fa-copy" onclick="copy()" title="Kopiuj do Schowka"></i>
-              
-            </th>
-            <th class="border p-1" scope="col">Ilość</th>
-            <th class="border p-1" scope="col">CENA</th>
-
-            {% endif %}
-            {% endwith %}
-
-
           </tr>
         </thead>
         <tbody>
@@ -115,6 +99,5 @@
 </div>
 </div>
 <textarea name="name" rows="1" cols="80" id="copy" style="opacity:0;"></textarea>
-
-
+{{by_price}}
 {% endblock %}
