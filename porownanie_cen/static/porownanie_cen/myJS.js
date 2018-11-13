@@ -87,7 +87,6 @@ function copy(){
        }else{
         toCopy+=text;
        }
-
       }
       iter=i;
       len+=3;
