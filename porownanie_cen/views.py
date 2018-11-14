@@ -62,6 +62,7 @@ def brand_details(request, pk):
     kontrahenci = Produkt.objects.values('kontrahentkod').distinct().filter(brand_id=pk)
     kontrahenci_length = len(kontrahenci)
     result = []
+    in_porownanie_cen = True
 
     if query:
         codes_to_query = query.splitlines()
@@ -117,5 +118,6 @@ def brand_details(request, pk):
         'code_price': code_price,
         'brand_id': brand_id,
         'result': result,
+        'in_porownanie_cen':in_porownanie_cen,
     }
     return render(request, 'porownanie_cen/produkty.html', context)

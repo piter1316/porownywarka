@@ -3,12 +3,16 @@
 {% block body %}
 {% load static %}
 
+{% if user.is_authenticated %}
+<div class="jumbotron jumbotron-fluid" style="background:url({% static 'porownanie_cen/' %}img/jumbo.png); background-repeat:no-repeat; background-position: center center">
+  <h3 class="text-center text-light ml-0 ml-md-5"> WITAJ {{user}}! WYBIERZ BRAND:</h3>
+</div>
+{% endif %}
+
 
 <div class="container mt-5">
-  <div class="col-12 col-md-6 mx-auto">
-    {% if user.is_authenticated %}
-    <h3 class="text-center ml-0 ml-md-5"> WITAJ {{user}}! WYBIERZ BRAND:</h3>
-    {% endif %}
+  <div class="col-12 col-md-8 mx-auto">
+
     <ul class="list-group ml-0 ml-md-5 ">
     {% for brand in object_list %} <!--# all_brands-->
       <li class="list-group-item d-flex  align-items-center py-1 bg-secondary">
@@ -36,7 +40,11 @@
     {% endfor %}
     </ul>
   </div>
-</div>
+  </div>
+
+
+
+
 
 
 

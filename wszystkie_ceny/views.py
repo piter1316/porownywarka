@@ -1,8 +1,11 @@
 from _mysql import result
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from porownanie_cen.models import Produkt
 
+
+@login_required()
 def wszystkie_ceny_view(request):
     products_list = Produkt.objects.raw("""SELECT 
         produkty.*,

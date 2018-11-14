@@ -6,7 +6,7 @@ app_name = 'porownanie_cen'
 
 urlpatterns = [
     #/porownanie_cen
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^$', login_required(views.IndexView.as_view()), name='index'),
 
 
 
