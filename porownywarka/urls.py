@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.decorators import login_required
 
-from accounts.views import login_view
 from porownanie_cen.views import IndexView
 
 
@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^porownanie_cen/', include('porownanie_cen.urls')),
     url(r'^wszystkie_ceny/', include('wszystkie_ceny.urls')),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^$', login_view, name="home"),
+    url(r'^$', login_required(IndexView.as_view()), name="home"),
 
 ]
 
