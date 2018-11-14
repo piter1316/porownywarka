@@ -1,3 +1,4 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
@@ -5,7 +6,7 @@ from django.views import View
 
 from accounts.forms import LoginForm
 
-
+@staff_member_required
 def signup_view(request):
     if request.method =='POST':
         form = UserCreationForm(request.POST)

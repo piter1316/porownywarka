@@ -91,7 +91,7 @@
            <li class="nav-item">
              <form class="form" action="{% url 'accounts:logout' %}" method="post">
                {% csrf_token %}
-               <button class="btn btn-warning text-light" type="submit">Wyloguj</button>
+               <button class="btn btn-warning text-light mr-1" type="submit">Wyloguj</button>
              </form>
           </li>
           {% else %}
@@ -99,6 +99,9 @@
             <a class="btn btn-success text-light" href="{% url 'accounts:login' %}">Zaloguj</a>
           </li> -->
           {% endif %}
+          <li class="nav-item">
+            <a class="btn btn-secondary text-light" href="{% url 'accounts:signup' %}">+</a>
+          </li>
         </ul>
       </div>
   </div>
