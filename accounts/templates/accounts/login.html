@@ -4,9 +4,11 @@
 
   <div class="container">
 
-    <form class="form-signin d-block mx-auto" action="{% url 'accounts:login' %}" method="post" style="max-width:400px;">
-      <h2 class="form-signin-heading">Zaloguj</h2>
+    <form class="form-signin d-block mx-auto mt-3 bg-light p-3 border border-dark rounded" action="{% url 'accounts:login' %}" method="post" style="max-width:400px;">
+      <h2 class="text-center"><i class="fas fa-user-ninja fa-5x"></i></h2>
+
       {% csrf_token %}
+
       {{form.username}}
       {{form.password}}
       {% if form.errors %}
