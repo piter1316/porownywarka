@@ -1,3 +1,5 @@
+import re
+
 from django.db.models import Min
 from django.views import generic
 from django.views.generic.edit import UpdateView, DeleteView
@@ -68,12 +70,9 @@ def brand_details(request, pk):
         codes_to_query = query.splitlines()
         for code in codes_to_query:
             kod_query = code.replace("'", '')
-            code = code.replace('-', '')
-            code = code.replace('/', '')
-            code = code.replace('_', '')
-            code = code.replace(' ', '')
-            code = code.replace('"', "")
-            code = code.replace('\t', "")
+            for char in code:
+                    if char in re.sub(r'[a-zA-Z0-9]', '', char):
+                        code = code.replace(char, "")
 
             if code != '':
                 result = Produkt.objects.values('klucz', 'kodtowaru').filter(kodtowaru=kod_query, brand_id=pk).annotate(

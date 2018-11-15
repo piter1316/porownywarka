@@ -1,3 +1,4 @@
+import re
 from _mysql import result
 
 from django.contrib.auth.decorators import login_required
@@ -24,12 +25,11 @@ def wszystkie_ceny_view(request):
 
     if query:
         kod_query = query.replace("'", '')
-        query = query.replace('-', '')
-        query = query.replace('/', '')
-        query = query.replace('_', '')
-        query = query.replace(' ', '')
-        query = query.replace('"', "")
-        query = query.replace('\t', "")
+        kod_query = query.replace("%", '')
+        for char in query:
+            if char in re.sub(r'[a-zA-Z0-9]', '', char):
+                query = query.replace(char, "")
+
         not_found_tip = Produkt.objects.raw("SELECT * FROM produkty WHERE kodtowaru LIKE %s LIMIT 10",
                                             (kod_query + "%",))
         result = Produkt.objects.raw("""SELECT 
@@ -38,24 +38,24 @@ def wszystkie_ceny_view(request):
         from produkty 
         left join  brandy  on produkty.brand_id = brandy.id
         where kodtowaru = '{}' order by cenakoncowa_eur""".format(kod_query))
-        # if result:
-        #     result = list(result)
-        #     result.append("BY_KOD_TOWARU")
+        if result:
+            result = list(result)
+            result.append("BY_KOD_TOWARU")
         if not result:
             info = True
             result = Produkt.objects.raw(
                 """SELECT produkty.*,
                 brandy.nazwa
-                from produkty 
+                from produkty
                 left join  brandy  on produkty.brand_id = brandy.id
                 where klucz = '{}' order by cenakoncowa_eur""".format(query))
-            if not result:
-                info = False
+        if not result:
+            info = False
 
-                not_found_tip = Produkt.objects.raw("SELECT produkty.*, brandy.nazwa FROM produkty "
-                                                "left join  brandy  on produkty.brand_id = brandy.id"
-                                                " WHERE klucz LIKE %s LIMIT 10",
-                                                (query + "%",))
+            not_found_tip = Produkt.objects.raw("SELECT produkty.*, brandy.nazwa FROM produkty "
+                                            "left join  brandy  on produkty.brand_id = brandy.id"
+                                            " WHERE klucz LIKE %s LIMIT 10",
+                                            (query + "%",))
 
     context = {
         'result': result,
