@@ -8,12 +8,7 @@ from porownanie_cen.models import Produkt
 
 @login_required()
 def wszystkie_ceny_view(request):
-    products_list = Produkt.objects.raw("""SELECT 
-        produkty.*,
-        brandy.nazwa
-        from produkty 
-        left join  brandy  on produkty.brand_id = brandy.id
-        limit 20""")
+    products_list = Produkt.objects.select_related('brand')[:20]
 
     query = request.GET.get('q')
     result = None
