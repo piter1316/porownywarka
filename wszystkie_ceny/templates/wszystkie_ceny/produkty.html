@@ -44,7 +44,7 @@
 
       <td>{{product.cenakoncowa_eur}}</td>
       <td>{{product.dataimportu}}</td>
-      <td>{{product.nazwa}}</td>
+      <td>{{product.brand.nazwa}}</td>
 
     </tr>
       {% empty %}
@@ -68,7 +68,7 @@
         {% endif %}
         <td>{{product.cenakoncowa_eur}}</td>
         <td>{{product.dataimportu}}</td>
-        <td>{{product.nazwa}}</td>
+        <td>{{product.brand.nazwa}}</td>
       </tr>
       {% endfor %}
       {% endif %}
@@ -82,13 +82,12 @@
       <td>{{product.cenakatalogowa_eur}}</td>
       <td>{{product.cenakoncowa_eur}}</td>
       <td>{{product.dataimportu}}</td>
-      <td>{{product.nazwa}}</td>
+      <td>{{product.brand.nazwa}}</td>
     </tr>
     {% endfor %}
   {% endif %}
   </tbody>
 </table>
 </div>
-
 
 {% endblock %}

@@ -25,37 +25,20 @@ def wszystkie_ceny_view(request):
 
     if query:
         kod_query = query.replace("'", '')
-        kod_query = query.replace("%", '')
         for char in query:
             if char in re.sub(r'[a-zA-Z0-9]', '', char):
                 query = query.replace(char, "")
-
-        not_found_tip = Produkt.objects.raw("SELECT * FROM produkty WHERE kodtowaru LIKE %s LIMIT 10",
-                                            (kod_query + "%",))
-        result = Produkt.objects.raw("""SELECT 
-        produkty.*,
-        brandy.nazwa
-        from produkty 
-        left join  brandy  on produkty.brand_id = brandy.id
-        where kodtowaru = '{}' order by cenakoncowa_eur""".format(kod_query))
+        result = Produkt.objects.filter(kodtowaru=kod_query).select_related('brand')
         if result:
             result = list(result)
-            result.append("BY_KOD_TOWARU")
+
         if not result:
             info = True
-            result = Produkt.objects.raw(
-                """SELECT produkty.*,
-                brandy.nazwa
-                from produkty
-                left join  brandy  on produkty.brand_id = brandy.id
-                where klucz = '{}' order by cenakoncowa_eur""".format(query))
+            result = Produkt.objects.filter(klucz=query).select_related('brand')
+
         if not result:
             info = False
-
-            not_found_tip = Produkt.objects.raw("SELECT produkty.*, brandy.nazwa FROM produkty "
-                                            "left join  brandy  on produkty.brand_id = brandy.id"
-                                            " WHERE klucz LIKE %s LIMIT 10",
-                                            (query + "%",))
+            not_found_tip = Produkt.objects.filter(klucz__istartswith=query)[:10]
 
     context = {
         'result': result,
