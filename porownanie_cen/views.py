@@ -80,26 +80,29 @@ def brand_details(request, pk):
                 if result:
                     result = list(result)
                     result.append("BY_KOD_TOWARU")
+                    code_price.append(result)
 
-                if not result:
+                    for kontrahent in kontrahenci:
+                        price = Produkt.objects.values('kodtowaru', 'cenakoncowa_eur', 'kontrahentkod').filter(
+                            kontrahentkod=kontrahent['kontrahentkod'], kodtowaru=kod_query, brand_id=pk)
+                        by_price.append(price)
+                else:
                     result = Produkt.objects.values('klucz', 'kodtowaru').filter(klucz=code, brand_id=pk).annotate(
                         Min('cenakoncowa_eur'))
                     if result:
                         result = list(result)
                         result.append("BY_KLUCZ")
-                        result.append(kod_query)
+                        # result.append(kod_query)
+                        code_price.append(result)
                     else:
                         code_price.append(code)
-                if result:
-                    code_price.append(result)
+                    # if result:
+                        # code_price.append(result)
 
-                for kontrahent in kontrahenci:
-                    price = Produkt.objects.values('kodtowaru', 'cenakoncowa_eur', 'kontrahentkod').filter(
-                        kontrahentkod=kontrahent['kontrahentkod'], kodtowaru=kod_query, brand_id=pk)
-                    if not price:
+                    for kontrahent in kontrahenci:
                         price = Produkt.objects.values('klucz', 'cenakoncowa_eur', 'kontrahentkod').filter(
                             kontrahentkod=kontrahent['kontrahentkod'], klucz=code, brand_id=pk)
-                    by_price.append(price)
+                        by_price.append(price)
 
     for result in by_price:
         final_result.append(result.values('kontrahentkod', 'cenakoncowa_eur', 'klucz').order_by('cenakoncowa_eur'))
@@ -118,5 +121,6 @@ def brand_details(request, pk):
         'brand_id': brand_id,
         'result': result,
         'in_porownanie_cen':in_porownanie_cen,
+
     }
     return render(request, 'porownanie_cen/produkty.html', context)

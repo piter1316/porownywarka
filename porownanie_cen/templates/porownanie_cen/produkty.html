@@ -8,7 +8,7 @@
   {% endfor %}
   {% endif %}
   <div class="row mx-2">
-    <div class="col-12 col-lg-3 p-0">
+    <div class="col-12 col-lg-4 p-0">
       <table class="w-100" id="prices" >
         <thead>
           <tr class="bg-secondary text-center border text-warning">
@@ -29,9 +29,9 @@
             <tr class="text-center">
               {% if code.0.kodtowaru %}
                 {% if code.1 == "BY_KLUCZ" %}
-                <td class="codes-background border text-dark">{{code.0.kodtowaru}}<i class="fas fa-exclamation-circle ml-2" data-toggle="tooltip" data-placement="right" title="Nie znaleziono kodu: {{code.2}}. Wyszukano po kluczu: {{code.0.klucz}}"</i></td>
+                <td  class="codes-background border text-dark">{{code.0.kodtowaru}}<i class="fas fa-exclamation-circle ml-2" data-toggle="tooltip" data-placement="right" title="Nie znaleziono kodu: {{code.2}}. Wyszukano po kluczu: {{code.0.klucz}}"</i></td>
                 {% else %}
-                <td class="codes-background  border text-dark " >{{code.0.kodtowaru}}</td>
+                <td nowrap class="codes-background  border text-dark " >{{code.0.kodtowaru}}</td>
                 {% endif %}
 
                 <td class="table-background  border text-dark ">1</td>
@@ -55,7 +55,7 @@
       </table>
     </div>
 
-    <div class="col-12 col-lg-9 p-0">
+    <div class="col-12 col-lg-8 p-0">
       <table class="w-100" id="result">
         <thead>
           <tr class="text-center bg-secondary  text-warning">
@@ -67,13 +67,9 @@
           </tr>
           <tr  class="bg-primary text-center border border-dark text-light">
             {% for kontrahent in kontrahenci %}
-            {% with x=kontrahenci_length %}
-            {% if x > 5 %}
-            <th class="border p-1" ><small>{{ kontrahent.kontrahentkod }}</small></th>
-            {% else %}
-            <th class="border p-1" >{{ kontrahent.kontrahentkod }}</th>
-            {% endif %}
-            {% endwith %}
+            <th nowrap class="border p-1" >
+              <small>{{ kontrahent.kontrahentkod }}</small>
+            </th>
           {% endfor %}
           </tr>
         </thead>
@@ -103,4 +99,5 @@
 </div>
 </div>
 <textarea name="name" rows="1" cols="20" id="copy" style="opacity:0;"></textarea>
+{{price_list}}
 {% endblock %}

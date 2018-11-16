@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>
     INT
     {% if in_porownanie_cen %}-
@@ -55,12 +56,15 @@
           <li class="nav-item">
             <a class="btn text-light" href="{% url 'wszystkie_ceny:produkty' %} ">CENNIKI</a>
           </li>
+
           <li class="m-0 ml-lg-5">
-            <a class=" btn text-light m-0 font-weight-bold" href="{% url 'porownanie_cen:index' %}">
               {% if in_wszystkie_produkty %}
-              WSZYSTKIE PRODUKTY
+              <p class="btn text-light m-0 font-weight-bold cursor-default" style="cursor:default;">
+                WSZYSTKIE PRODUKTY
+              </p>
               {% endif%}
               {% if in_porownanie_cen %}
+              <a class=" btn text-light m-0 font-weight-bold" href="{% url 'porownanie_cen:index' %}">
               {% for item in brand %}
                 {{ item.nazwa}}
               {% endfor %}
@@ -77,13 +81,11 @@
               </div>
             </div>
           </li>
-          <li>
-
-          </li>
           {% endif %}
         </ul>
 
         <ul class="navbar-nav nabar-right text-center">
+
           <li class="nav-item mr-1">
             <a class="btn btn-info text-light" href="{% url 'porownanie_cen:brand-add' %}"> DODAJ BRAND</a>
           </li>
