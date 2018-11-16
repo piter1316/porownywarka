@@ -92,7 +92,7 @@ def brand_details(request, pk):
                     if result:
                         result = list(result)
                         result.append("BY_KLUCZ")
-                        # result.append(kod_query)
+                        result.append(kod_query)
                         code_price.append(result)
                     else:
                         code_price.append(code)

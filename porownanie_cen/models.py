@@ -6,6 +6,7 @@ class Brand(models.Model):
     id = models.AutoField(primary_key=True)
     nazwa = models.CharField(db_column='nazwa', max_length=200)
     logo = models.FileField(blank=True, null=True)
+    icon = models.CharField(db_column='icon', max_length=200,default='fas fa-rocket fa-9x')
 
     def __str__(self):
         return self.nazwa

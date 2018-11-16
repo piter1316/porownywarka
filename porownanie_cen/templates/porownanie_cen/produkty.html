@@ -29,6 +29,7 @@
             <tr class="text-center">
               {% if code.0.kodtowaru %}
                 {% if code.1 == "BY_KLUCZ" %}
+                
                 <td  class="codes-background border text-dark">{{code.0.kodtowaru}}<i class="fas fa-exclamation-circle ml-2" data-toggle="tooltip" data-placement="right" title="Nie znaleziono kodu: {{code.2}}. Wyszukano po kluczu: {{code.0.klucz}}"</i></td>
                 {% else %}
                 <td nowrap class="codes-background  border text-dark " >{{code.0.kodtowaru}}</td>
