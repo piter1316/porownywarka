@@ -1,4 +1,4 @@
-{% extends 'porownanie_cen/base.html' %}
+﻿{% extends 'porownanie_cen/base.html' %}
 
 {% block body %}
 {% load static %}
@@ -10,32 +10,41 @@
 </div>
 {% endif %}
 <div class="container-fluid bg-dark" style="height:100%;">
-  <div class="container pt-5">
-    <div class="row">
+  <div class="container pt-5 w-50">
+    <div class="row ">
     {% for brand in object_list %}
 
       <div class="col-4 text-center">
         <a class=" text-light mx-auto btn" href="{% url 'porownanie_cen:detail' brand.id %}">
           <div class="">
-            <i class="{{brand.icon}} text-light"></i>
+            <!--<i class="{{brand.icon}} text-light"></i>-->
+            {% if brand.logo %}
+            <img class="rounded" src="{{ brand.logo.url}}" width="120">
+            {% endif %}
           </div>
         </a>
+        {% if request.user.is_superuser %}
         <div class="mt-1">
+
           <form  action="{% url 'porownanie_cen:brand-delete' brand.id %}" method="post">
-          <div class="btn-group mb-5" role="group" aria-label="Basic example">
-            <a class="btn btn-secondary" href="{% url 'porownanie_cen:brand-update' brand.id%}">
+          <div class="btn-group mb-2" role="group">
+            <a  class="btn btn-secondary {% if not request.user.is_superuser %} disabled {% endif %}" href="{% url 'porownanie_cen:brand-update' brand.id%}">
               <i class="fas fa-edit text-light"></i>
             </a>
-            <a  href="{% url 'porownanie_cen:detail' brand.id %}" class="btn btn-secondary text-light">{{brand.nazwa}}</a>
+            <a  href="{% url 'porownanie_cen:detail' brand.id %}" class="btn btn-secondary text-light">+</a>
 
               {% csrf_token %}
               <input type="hidden" name="brand_id" value="{{brand.id}}"/>
-              <button type="submit" class="btn btn-secondary" onclick="return confirm('Usunąć {{brand.nazwa}} i wszystkie pozycje cennika?')" >
+
+              <button type="submit" class="btn btn-secondary" {% if not request.user.is_superuser %} disabled {% endif %} onclick="return confirm('Usunąć {{brand.nazwa}} i wszystkie pozycje cennika?')" >
                 <i class="fas fa-trash-alt text-dark"></i>
               </button>
+
             </form>
+
           </div>
         </div>
+      {% endif %}
       </div>
     {% endfor %} <!--# all_brands-->
     </div>
@@ -43,37 +52,37 @@
 </div>
 
 
-<div class="container-fluid p-0 ">
+<!--<div class="container-fluid p-0 ">-->
 
-  <div class="col-6 mx-auto" style="">
+  <!--<div class="col-6 mx-auto" style="">-->
 
-    <ul class="list-group ml-0  pt-5">
-    {% for brand in object_list %} <!--# all_brands-->
+    <!--<ul class="list-group ml-0  pt-5">-->
+    <!--{% for brand in object_list %}-->
 
-      <li class="list-group-item d-flex  align-items-center py-1 bg-secondary ">
+      <!--<li class="list-group-item d-flex  align-items-center py-1 bg-secondary ">-->
 
-        <a class="text-light text-left mx-auto btn" href="{% url 'porownanie_cen:detail' brand.id %}">
-           <span class="">{{brand.nazwa}}</span>
-        </a>
-        {% if brand.logo %}
-        <img class="img-thumbnail ml-1" src="{{ brand.logo.url }}" width="50" height="50">
-        {% else %}
-        <img class="img-thumbnail ml-1" src="{% static 'porownanie_cen/' %}img/RECE.png" width="50" height="50">
-        {% endif %}
-        <a class="btn btn-light mx-2 px-3" href="{% url 'porownanie_cen:brand-update' brand.id%}">
-          <i class="fas fa-edit text-primary"></i>
-        </a>
-        <form action="{% url 'porownanie_cen:brand-delete' brand.id %}" method="post" >
-          {% csrf_token %}
-          <input type="hidden" name="brand_id" value="{{brand.id}}"/>
-          <button type="submit" class="btn btn-light px-3" onclick="return confirm('Usunąć {{brand.nazwa}} i wszystkie pozycje cennika?')" >
-            <i class="fas fa-trash-alt text-danger"></i>
-          </button>
-        </form>
-      </li>
-    {% endfor %}
-    </ul>
-  </div>
+        <!--<a class="text-light text-left mx-auto btn" href="{% url 'porownanie_cen:detail' brand.id %}">-->
+           <!--<span class="">{{brand.nazwa}}</span>-->
+        <!--</a>-->
+        <!--{% if brand.logo %}-->
+        <!--<img class="img-thumbnail ml-1" src="{{ brand.logo.url }}" width="50" height="50">-->
+        <!--{% else %}-->
+        <!--<img class="img-thumbnail ml-1" src="{% static 'porownanie_cen/' %}img/RECE.png" width="50" height="50">-->
+        <!--{% endif %}-->
+        <!--<a class="btn btn-light mx-2 px-3" href="{% url 'porownanie_cen:brand-update' brand.id%}">-->
+          <!--<i class="fas fa-edit text-primary"></i>-->
+        <!--</a>-->
+        <!--<form action="{% url 'porownanie_cen:brand-delete' brand.id %}" method="post" >-->
+          <!--{% csrf_token %}-->
+          <!--<input type="hidden" name="brand_id" value="{{brand.id}}"/>-->
+          <!--<button type="submit" class="btn btn-light px-3" onclick="return confirm('Usunąć {{brand.nazwa}} i wszystkie pozycje cennika?')" >-->
+            <!--<i class="fas fa-trash-alt text-dark"></i>-->
+          <!--</button>-->
+        <!--</form>-->
+      <!--</li>-->
+    <!--{% endfor %}-->
+    <!--</ul>-->
+  <!--</div>-->
 
 
 

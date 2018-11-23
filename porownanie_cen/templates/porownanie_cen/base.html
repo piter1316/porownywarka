@@ -31,19 +31,12 @@
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
-<body onload="myFunction()">
-<nav class="navbar navbar-dark bg-dark navbar-expand-md">
+<body class="bg-dark" onload="myFunction()">
+<nav class="navbar navbar-dark bg-black navbar-expand-md p-0"  style="background-color:black;">
   <div class="container-fluid">
-      {% if user.is_authenticated %}
-      <a class="navbar-brand" href="{% url 'porownanie_cen:index' %}">
-        <img src="{% static 'porownanie_cen/' %}img/3000px.png" alt="" height="40">
-      </a>
-      {% else %}
-
       <a class="navbar-brand" href="{% url 'home' %}">
-        <img src="{% static 'porownanie_cen/' %}img/3000px.png" alt="" height="40">
+        <img class="rounded" src="{% static 'porownanie_cen/' %}img/3000px.png" alt="" height="30">
       </a>
-      {% endif %}
       <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#topNavBar">
           <span class="navbar-toggler-icon"></span>
       </button>
@@ -64,13 +57,15 @@
               </p>
               {% endif%}
               {% if in_porownanie_cen %}
-              <a class=" btn text-light m-0 font-weight-bold" href="{% url 'porownanie_cen:index' %}">
-              {% for item in brand %}
-                {{ item.nazwa}}
-              {% endfor %}
-            </a>
-            <div class="dropdown float-md-right">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown float-md-right"
+              <label>
+                <a class=" btn text-light m-0 font-weight-bold" href="{% url 'porownanie_cen:index' %}">
+                  {% for item in brand %}
+                    {{ item.nazwa}}
+                  {% endfor %}
+                </a>
+              </label>
+              <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Wprowadź kody
               </button>
               <div class="dropdown-menu dropdown-menu-center  p-0" aria-labelledby="dropdownMenuButton">
@@ -85,24 +80,34 @@
         </ul>
 
         <ul class="navbar-nav nabar-right text-center">
-
-          <li class="nav-item mr-1">
-            <a class="btn btn-info text-light" href="{% url 'porownanie_cen:brand-add' %}"> DODAJ BRAND</a>
-          </li>
-          {% if user.is_authenticated %}
-           <li class="nav-item">
-             <form class="form" action="{% url 'accounts:logout' %}" method="post">
-               {% csrf_token %}
-               <button class="btn btn-warning text-light mr-1" type="submit">Wyloguj</button>
-             </form>
-          </li>
-          {% else %}
-          <!-- <li class="nav-item">
-            <a class="btn btn-success text-light" href="{% url 'accounts:login' %}">Zaloguj</a>
-          </li> -->
-          {% endif %}
           <li class="nav-item">
-            <a class="btn btn-secondary text-light" href="{% url 'accounts:signup' %}">+</a>
+            {% if user.is_authenticated %}
+            <div class="btn-group dropleft">
+               <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Użytkownik
+               </button>
+               <div class="dropdown-menu  text-center">
+                 <span>{{user}}</span>
+
+                 {% if request.user.is_superuser %}
+                 <div>
+                   <ul class="nav navbar-nav">
+                     <li class="navbar-item">
+                       <a class="btn btn-info btn-sm text-light" href="{% url 'porownanie_cen:brand-add' %}"> DODAJ BRAND</a>
+                     </li>
+                     <li class="navbar-item">
+                       <a class="btn btn-secondary text-light btn-sm" href="{% url 'accounts:signup' %}">+</a>
+                     </li>
+                   </ul>
+                 </div>
+                 {% endif %}
+                 <form class="form" action="{% url 'accounts:logout' %}" method="post">
+                   {% csrf_token %}
+                   <button class="btn btn-warning btn-sm text-light mr-1" type="submit">Wyloguj</button>
+                 </form>
+               </div>
+             </div>
+             {% endif %}
           </li>
         </ul>
       </div>

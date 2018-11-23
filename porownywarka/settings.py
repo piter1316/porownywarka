@@ -25,7 +25,7 @@ SECRET_KEY = '%_eas4-@f^-6pdj+srz*^1#vg2--)h_(_k^xyc_2$6!ftmknrk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,10 +88,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'porownywarka',
-        'USER': 'root',
-        'PASSWORD': 'piter1234',
-        # 'HOST': 'b2b.int-technics.pl',   # Or an IP Address that your DB is hosted on
-        # 'PORT': '3306',
+        'USER': 'porownywarka',
+        'PASSWORD': 'DSFGJtyi67%WQRefwgSHRyjtu64w5tAWgefbd',
+        'HOST': '192.168.1.12',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 
@@ -104,6 +104,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 4,
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -133,5 +136,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")

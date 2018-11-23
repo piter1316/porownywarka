@@ -11,7 +11,7 @@
     <div class="col-12 col-lg-4 p-0">
       <table class="w-100" id="prices" >
         <thead>
-          <tr class="bg-secondary text-center border text-warning">
+          <tr class="bg-secondary text-center text-warning">
             <th colspan="2" class="border border-right-0 text-right">Razem:</th>
             <th class="border border-left-0" id="lowest_sum">0.00</th>
           </tr>
@@ -20,39 +20,66 @@
               <button class="btn py-0 px-1 btn-tarnsparent text-white far fa-copy" onclick="copy()"  data-toggle="tooltip" data-placement="top" title="Kopiuj do Schowka" id="copyButton"></button>
               <small>KOD</small>
             </th>
-            <th class="border p-1" scope="col"><small>Ilość</small></th>
+            <th class="border  p-1" scope="col"><small>Ilość</small></th>
             <th class="border p-1" scope="col"><small>CENA</small></th>
           </tr>
         </thead>
+        {% if code_price %}
         <tbody>
+
           {% for code in code_price %}
             <tr class="text-center">
               {% if code.0.kodtowaru %}
                 {% if code.1 == "BY_KLUCZ" %}
-                
-                <td  class="codes-background border text-dark">{{code.0.kodtowaru}}<i class="fas fa-exclamation-circle ml-2" data-toggle="tooltip" data-placement="right" title="Nie znaleziono kodu: {{code.2}}. Wyszukano po kluczu: {{code.0.klucz}}"</i></td>
+
+                <td  class="codes-background border border-dark border-left-0  text-dark">{{code.0.kodtowaru}}<i class="fas fa-exclamation-circle ml-2" data-toggle="tooltip" data-placement="right" title="Nie znaleziono kodu: {{code.2}}. Wyszukano po kluczu: {{code.0.klucz}}"</i></td>
                 {% else %}
-                <td nowrap class="codes-background  border text-dark " >{{code.0.kodtowaru}}</td>
+                <td nowrap class="codes-background border border-dark border-left-0   text-dark " >{{code.0.kodtowaru}}</td>
                 {% endif %}
 
-                <td class="table-background  border text-dark ">1</td>
+                <td class="table-background  border border-dark text-dark ">1</td>
                 <!--suppress XmlDuplicatedId -->
                 {% if code.0.cenakoncowa_eur__min %}
-                  <td class="lowest-background  border text-light " id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
+                  <td class="lowest-background  border border-dark text-light " id="lowest_{{forloop.counter}}">{{code.0.cenakoncowa_eur__min}}</td>
                   {% else %}
-                  <td class="lowest-background  border text-light " id="lowest_{{forloop.counter}}">0</td>
+                  <td class="lowest-background  border border-dark text-light " id="lowest_{{forloop.counter}}">0</td>
                 {% endif %}
               {% else %}
-                <td class="bg-danger  border text-dark">
+                <td class="bg-danger  border border-dark text-dark">
                   {{code}}
                 </td>
-                <td class="bg-danger  border text-dark " >0</td>
+                <td class="bg-danger  border border-dark text-dark " >0</td>
                 <!--suppress XmlDuplicatedId -->
-                <td class="bg-danger  border text-light " id="lowest_{{forloop.counter}}">0</td>
+                <td class="bg-danger  border border-dark text-light " id="lowest_{{forloop.counter}}">0</td>
               {% endif %}
             </tr>
           {% endfor %}
+
         </tbody>
+        {% else %}
+        <tbody>
+          <tr class="text-center">
+              <td  class="codes-background border border-dark border-left-0  text-dark"><i class="fas fa-exclamation-circle ml-2"</i></td>
+              <td class="table-background  border border-dark text-dark ">1</td>
+              <td class="table-background   border border-dark text-dark " >0</td>
+          </tr>
+          <tr class="text-center">
+              <td  class="codes-background border border-dark border-left-0  text-dark"><i class="fas fa-exclamation-circle ml-2"</i></td>
+              <td class="table-background  border border-dark text-dark ">1</td>
+              <td class="table-background   border border-dark text-dark " >0</td>
+          </tr>
+          <tr class="text-center">
+              <td  class="codes-background border border-dark border-left-0  text-dark"><i class="fas fa-exclamation-circle ml-2"</i></td>
+              <td class="table-background  border border-dark text-dark ">1</td>
+              <td class="table-background   border border-dark text-dark " >0</td>
+          </tr>
+          <tr class="text-center">
+              <td  class="codes-background border border-dark border-left-0  text-dark"><i class="fas fa-exclamation-circle ml-2"</i></td>
+              <td class="table-background  border border-dark text-dark ">1</td>
+              <td class="table-background   border border-dark text-dark " >0</td>
+          </tr>
+        </tbody>
+        {% endif %}
       </table>
     </div>
 
@@ -74,6 +101,7 @@
           {% endfor %}
           </tr>
         </thead>
+        {% if final_result %}
         <tbody>
           {% if final_result %}
             <tr class="row_result" >
@@ -94,11 +122,35 @@
         {% endfor %}
       </tr>
         </tbody>
+        {% else %}
+        <tbody>
+          <tr>
+            {% for kontrahent in kontrahenci %}
+            <td class="text-center table-background border border-dark text-danger" id="{{forloop.counter}}">N/A</td>
+            {% endfor %}
+          </tr>
+          <tr>
+            {% for kontrahent in kontrahenci %}
+            <td class="text-center table-background border border-dark text-danger" id="{{forloop.counter}}">N/A</td>
+            {% endfor %}
+          </tr>
+          <tr>
+            {% for kontrahent in kontrahenci %}
+            <td class="text-center table-background border border-dark text-danger" id="{{forloop.counter}}">N/A</td>
+            {% endfor %}
+          </tr>
+          <tr>
+            {% for kontrahent in kontrahenci %}
+            <td class="text-center table-background border border-dark text-danger" id="{{forloop.counter}}">N/A</td>
+            {% endfor %}
+          </tr>
+        </tbody>
+        {% endif %}
       </table>
     </div>
   </div>
 </div>
 </div>
 <textarea name="name" rows="1" cols="20" id="copy" style="opacity:0;"></textarea>
-{{price_list}}
+
 {% endblock %}
