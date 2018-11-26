@@ -5,7 +5,7 @@
 
   <div class="container">
 
-    <form class="form-signin d-block mx-auto mt-3 bg-light p-3 border border-dark " action="{% url 'accounts:login' %}" method="post" style="max-width:400px;">
+    <form class="form-signin d-block mx-auto mt-3 bg-light p-3 border border-dark rounded " action="{% url 'accounts:login' %}" method="post" style="max-width:400px;">
       <img class="d-block mx-auto mb-2" src="{% static 'accounts/' %}img/user-ninja-solid-rece.png" alt="int-ninja" width="150">
 
       {% csrf_token %}

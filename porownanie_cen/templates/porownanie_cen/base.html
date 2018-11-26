@@ -31,7 +31,7 @@
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
-<body class="bg-dark" onload="myFunction()">
+<body class="bg-secondary" onload="myFunction()">
 <nav class="navbar navbar-dark bg-black navbar-expand-md p-0"  style="background-color:black;">
   <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'home' %}">
@@ -57,14 +57,14 @@
               </p>
               {% endif%}
               {% if in_porownanie_cen %}
-            <div class="dropdown float-md-right"
-              <label>
+
                 <a class=" btn text-light m-0 font-weight-bold" href="{% url 'porownanie_cen:index' %}">
                   {% for item in brand %}
                     {{ item.nazwa}}
                   {% endfor %}
                 </a>
-              </label>
+              
+            <div class="dropdown float-md-right ">
               <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Wprowadź kody
               </button>
