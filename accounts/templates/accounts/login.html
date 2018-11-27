@@ -14,7 +14,7 @@
       {{form.password}}
       {% if form.errors %}
         {% for error in form.non_field_errors %}
-          <div class="alert alert-warning m-1">
+          <div class="alert alert-danger m-1">
               <strong>Niewłaściwy login lub hasło, spróbuj ponownie...</strong>
           </div>
         {% endfor %}
